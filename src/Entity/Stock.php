@@ -21,18 +21,17 @@ class Stock
     #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
     private $CurrentPrice;
 
-    #[ORM\OneToMany(mappedBy: 'Stock', targetEntity: OwnedStock::class)]
-    private $ownedStocks;
-
     #[ORM\OneToMany(mappedBy: 'Stock', targetEntity: StockTransaction::class)]
     private $stockTransactions;
 
     #[ORM\OneToMany(mappedBy: 'Stock', targetEntity: Battle::class)]
     private $battles;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'ownedStocks')]
+    private $Owner;
+
     public function __construct()
     {
-        $this->ownedStocks = new ArrayCollection();
         $this->stockTransactions = new ArrayCollection();
         $this->battles = new ArrayCollection();
     }
@@ -62,36 +61,6 @@ class Stock
     public function setCurrentPrice(string $CurrentPrice): self
     {
         $this->CurrentPrice = $CurrentPrice;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|OwnedStock[]
-     */
-    public function getOwnedStocks(): Collection
-    {
-        return $this->ownedStocks;
-    }
-
-    public function addOwnedStock(OwnedStock $ownedStock): self
-    {
-        if (!$this->ownedStocks->contains($ownedStock)) {
-            $this->ownedStocks[] = $ownedStock;
-            $ownedStock->setStock($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOwnedStock(OwnedStock $ownedStock): self
-    {
-        if ($this->ownedStocks->removeElement($ownedStock)) {
-            // set the owning side to null (unless already changed)
-            if ($ownedStock->getStock() === $this) {
-                $ownedStock->setStock(null);
-            }
-        }
 
         return $this;
     }
@@ -152,6 +121,18 @@ class Stock
                 $battle->setStock(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOwner(): ?User
+    {
+        return $this->Owner;
+    }
+
+    public function setOwner(?User $Owner): self
+    {
+        $this->Owner = $Owner;
 
         return $this;
     }

@@ -15,7 +15,7 @@ class StockTransaction
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'stockTransactions')]
     #[ORM\JoinColumn(nullable: false)]
-    private $User;
+    private $Owner;
 
     #[ORM\ManyToOne(targetEntity: Stock::class, inversedBy: 'stockTransactions')]
     #[ORM\JoinColumn(nullable: false)]
@@ -35,14 +35,14 @@ class StockTransaction
         return $this->id;
     }
 
-    public function getUser(): ?User
+    public function getOwner(): ?User
     {
-        return $this->User;
+        return $this->Owner;
     }
 
-    public function setUser(?User $User): self
+    public function setOwner(?User $Owner): self
     {
-        $this->User = $User;
+        $this->Owner = $Owner;
 
         return $this;
     }

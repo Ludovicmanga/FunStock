@@ -32,9 +32,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $LastName;
 
-    #[ORM\OneToMany(mappedBy: 'User', targetEntity: OwnedStock::class)]
-    private $ownedStocks;
-
     #[ORM\OneToMany(mappedBy: 'User', targetEntity: StockTransaction::class)]
     private $stockTransactions;
 
@@ -50,14 +47,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'Winner', targetEntity: Battle::class)]
     private $winnedBattles;
 
+    #[ORM\OneToMany(mappedBy: 'Owner', targetEntity: Stock::class)]
+    private $ownedStocks;
+
     public function __construct()
     {
-        $this->ownedStocks = new ArrayCollection();
         $this->stockTransactions = new ArrayCollection();
         $this->battlesAsAttacker = new ArrayCollection();
         $this->battlesAsDefender = new ArrayCollection();
         $this->lostBattles = new ArrayCollection();
         $this->winnedBattles = new ArrayCollection();
+        $this->ownedStocks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -150,36 +150,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastName(string $LastName): self
     {
         $this->LastName = $LastName;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|OwnedStock[]
-     */
-    public function getOwnedStocks(): Collection
-    {
-        return $this->ownedStocks;
-    }
-
-    public function addOwnedStock(OwnedStock $ownedStock): self
-    {
-        if (!$this->ownedStocks->contains($ownedStock)) {
-            $this->ownedStocks[] = $ownedStock;
-            $ownedStock->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOwnedStock(OwnedStock $ownedStock): self
-    {
-        if ($this->ownedStocks->removeElement($ownedStock)) {
-            // set the owning side to null (unless already changed)
-            if ($ownedStock->getUser() === $this) {
-                $ownedStock->setUser(null);
-            }
-        }
 
         return $this;
     }
@@ -328,6 +298,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($winnedBattle->getWinner() === $this) {
                 $winnedBattle->setWinner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Stock[]
+     */
+    public function getOwnedStocks(): Collection
+    {
+        return $this->ownedStocks;
+    }
+
+    public function addOwnedStock(Stock $ownedStock): self
+    {
+        if (!$this->ownedStocks->contains($ownedStock)) {
+            $this->ownedStocks[] = $ownedStock;
+            $ownedStock->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOwnedStock(Stock $ownedStock): self
+    {
+        if ($this->ownedStocks->removeElement($ownedStock)) {
+            // set the owning side to null (unless already changed)
+            if ($ownedStock->getOwner() === $this) {
+                $ownedStock->setOwner(null);
             }
         }
 
