@@ -1,0 +1,32 @@
+<div class="modal">
+    <div class="modal_wrapper" aria-hidden="true" roles="dialog" aria-labelled-by="modal_title">
+        <h3>Fight Jack</h3>
+        <form action="{{ path('home') }}">
+            <div class="form" id="fightModal_step1">
+                <input type="text" name="email" placeholder="email">
+                <input type="password" name="email" placeholder="password">
+                <div class="btn_box">
+                    <button type="button" id="fightModal_next1">Next</button>
+                </div>
+            </div>
+
+            <div class="form" id="fightModal_step2">
+                <input type="text" name="adresse" placeholder="adresse">
+                <input type="text" name="name" placeholder="prénom">
+                <div class="btn_box">
+                    <button type="button" id="fightModal_back1">Back</button>
+                    <button type="button" id="fightModal_next2">Next</button>
+                </div>
+            </div>
+
+            <div class="form" id="fightModal_step3">
+                <input type="text" name="job" placeholder="job">
+                <input type="text" name="passion" placeholder="passion">
+                <div class="btn_box">
+                    <button id="fightModal_back2">Back</button>
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
