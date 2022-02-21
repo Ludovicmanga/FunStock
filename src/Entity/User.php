@@ -50,6 +50,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'Owner', targetEntity: Stock::class)]
     private $ownedStocks;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $wins;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $defeats;
+
     public function __construct()
     {
         $this->stockTransactions = new ArrayCollection();
@@ -330,6 +336,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $ownedStock->setOwner(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getWins(): ?int
+    {
+        return $this->wins;
+    }
+
+    public function setWins(?int $wins): self
+    {
+        $this->wins = $wins;
+
+        return $this;
+    }
+
+    public function getDefeats(): ?int
+    {
+        return $this->defeats;
+    }
+
+    public function setDefeats(?int $defeats): self
+    {
+        $this->defeats = $defeats;
 
         return $this;
     }
