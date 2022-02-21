@@ -109,3 +109,45 @@ body {
     width: 20%;
 }
 
+/* Fight modal */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal_wrapper {
+    width: 360px;
+    height: 400px;
+    margin: 8% auto;
+    background: #fff;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.modal_wrapper .form {
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    transition: 0.5s;
+}
+
+#fightModal_step2 {
+    left: 450px;
+}
+
+#fightModal_step3 {
+    left: 450px;
+}
+
+#fightModal_step4 {
+    left: 450px;
+}
