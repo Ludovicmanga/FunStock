@@ -130,6 +130,7 @@ body {
     background: #fff;
     border-radius: 5px;
     position: relative;
+    overflow: hidden;
 }
 
 .modal_wrapper .form {
@@ -144,5 +145,9 @@ body {
 }
 
 #fightModal_step3 {
+    left: 450px;
+}
+
+#fightModal_step4 {
     left: 450px;
 }

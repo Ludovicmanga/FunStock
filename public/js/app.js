@@ -1,28 +1,26 @@
-FightModalStep1 = document.getElementById('fightModal_step1');
-FightModalStep2 = document.getElementById('fightModal_step2');
-FightModalStep3 = document.getElementById('fightModal_step3');
 
-FightModalNext1 = document.getElementById('fightModal_next1');
-FightModalNext2 = document.getElementById('fightModal_next2');
-FightModalBack1 = document.getElementById('fightModal_back1');
-FightModalBack2 = document.getElementById('fightModal_back2');
-
-FightModalNext1.onclick = function() {
-    FightModalStep1.style.left = "-450px";
-    FightModalStep2.style.left = "40px";
+document.getElementById('fightModal_next1').onclick = function() {
+    document.getElementById('fightModal_step1').style.left = "-450px";
+    document.getElementById('fightModal_step2').style.left = "40px";
 }
 
-FightModalBack1.onclick = function() {
-    FightModalStep1.style.left = "40px";
-    FightModalStep2.style.left = "450px";
+document.getElementById('fightModal_back1').onclick = function() {
+    document.getElementById('fightModal_step1').style.left = "40px";
+    document.getElementById('fightModal_step2').style.left = "450px";
 }
 
-FightModalNext2.onclick = function() {
-    FightModalStep2.style.left = "-450px";
-    FightModalStep3.style.left = "40px";
+document.getElementById('fightModal_next2').onclick = function() {
+    document.getElementById('fightModal_step2').style.left = "-450px";
+    document.getElementById('fightModal_step3').style.left = "40px";
 }
 
-FightModalBack2.onclick = function() {
-    FightModalStep2.style.left = "40px";
-    FightModalStep3.style.left = "450px";
+document.getElementById('fightModal_back2').onclick = function() {
+    document.getElementById('fightModal_step2').style.left = "40px";
+    document.getElementById('fightModal_step3').style.left = "450px";
+}
+
+/* We set up the opening and closing of modals */
+
+const openModal = function (e) {
+    
 }

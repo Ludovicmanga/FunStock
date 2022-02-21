@@ -16,10 +16,10 @@ class Stock
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $Company_name;
+    private $companyName;
 
     #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
-    private $CurrentPrice;
+    private $currentPrice;
 
     #[ORM\OneToMany(mappedBy: 'Stock', targetEntity: StockTransaction::class)]
     private $stockTransactions;
@@ -28,7 +28,7 @@ class Stock
     private $battles;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'ownedStocks')]
-    private $Owner;
+    private $owner;
 
     public function __construct()
     {
@@ -43,12 +43,12 @@ class Stock
 
     public function getCompanyName(): ?string
     {
-        return $this->Company_name;
+        return $this->companyName;
     }
 
-    public function setCompanyName(string $Company_name): self
+    public function setCompanyName(string $companyName): self
     {
-        $this->Company_name = $Company_name;
+        $this->companyName = $companyName;
 
         return $this;
     }
@@ -135,5 +135,9 @@ class Stock
         $this->Owner = $Owner;
 
         return $this;
+    }
+
+    public function __toString() {
+        return $this->companyName;
     }
 }
