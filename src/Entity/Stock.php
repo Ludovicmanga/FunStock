@@ -55,12 +55,12 @@ class Stock
 
     public function getCurrentPrice(): ?string
     {
-        return $this->CurrentPrice;
+        return $this->currentPrice;
     }
 
-    public function setCurrentPrice(string $CurrentPrice): self
+    public function setCurrentPrice(string $currentPrice): self
     {
-        $this->CurrentPrice = $CurrentPrice;
+        $this->currentPrice = $currentPrice;
 
         return $this;
     }

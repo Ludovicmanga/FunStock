@@ -14,12 +14,13 @@
     </div>
     <div class="main_box">
         <h1 class="main_box_title">Challenge your friends</h1>
+        {% for user in all_users %}
         <div id="challenge_friends_box_wrapper">
             <div class="profile_box_container">
                 <div class="profile_picture_container">
                     <img src="{{ asset('uploads/profile_man.jpg') }}">
                 </div>
-                <h3>Jack</h3>
+                <h3>{{ user.firstName }}</h3>
             </div>
             <div class="stock_valuation_box_container">
                 <h3>Stock Valuation</h3>
@@ -34,11 +35,12 @@
                 <div>2 losses</div>
                 <i class="fa-solid fa-skull-crossbones"></i>
             </div>
-            <a class="fight_btn" href="#fight_modal">
-                <div class="not-clickable">Fight Jack</div>
+            <a class="fight_btn" href="#fight_modal" id="{{ user.id }}_fight_btn">
+                <div class="not-clickable">Fight {{ user.firstName }}</div>
                 <i class="fa-solid fa-bomb not-clickable"></i>
             </a>
         </div>
+        {% endfor %}
     </div>
 </div>
 <div class="main_boxes_row">
