@@ -63,6 +63,14 @@ const openFightModal = function (e, modalStop) {
 const closeFightModal = function (e, modalStop) {
     closeModal(e, modalStop);
     document.getElementById("fight_form").reset();
+    window.setTimeout(function() {
+        document.getElementById('fightModal_step1').style.left = "40px";
+        document.getElementById('fightModal_step2').style.left = "450px";
+        document.getElementById('fightModal_step3').style.left = "450px";
+    }, 510);
+    document.getElementById("fight_form").querySelectorAll('input[name="defender"]').forEach(input => {
+        input.remove()
+    })
 }
 
 document.querySelectorAll('.fight_btn').forEach(a => {

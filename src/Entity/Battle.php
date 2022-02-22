@@ -19,37 +19,34 @@ class Battle
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'battlesAsDefender')]
     #[ORM\JoinColumn(nullable: false)]
-    private $Defender;
+    private $defender;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'lostBattles')]
     #[ORM\JoinColumn(nullable: true)]
-    private $Loser;
+    private $loser;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'winnedBattles')]
     #[ORM\JoinColumn(nullable: true)]
-    private $Winner;
+    private $winner;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $State;
+    private $state;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
-    private $Accepted;
+    private $accepted;
 
     #[ORM\ManyToOne(targetEntity: Stock::class, inversedBy: 'battles')]
     #[ORM\JoinColumn(nullable: false)]
-    private $Stock;
+    private $stock;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $stockDirectionPrediction;
 
-    #[ORM\Column(type: 'integer')]
-    private $Stock_percentage_prediction;
-
-    #[ORM\Column(type: 'date')]
-    private $predictionDate;
-
     #[ORM\Column(type: 'datetime')]
     private $battleDate;
+
+    #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
+    private $amount;
 
     public function getId(): ?int
     {
@@ -70,72 +67,72 @@ class Battle
 
     public function getDefender(): ?User
     {
-        return $this->Defender;
+        return $this->defender;
     }
 
-    public function setDefender(?User $Defender): self
+    public function setDefender(?User $defender): self
     {
-        $this->Defender = $Defender;
+        $this->defender = $defender;
 
         return $this;
     }
 
     public function getLoser(): ?User
     {
-        return $this->Loser;
+        return $this->loser;
     }
 
-    public function setLoser(?User $Loser): self
+    public function setLoser(?User $loser): self
     {
-        $this->Loser = $Loser;
+        $this->loser = $loser;
 
         return $this;
     }
 
     public function getWinner(): ?User
     {
-        return $this->Winner;
+        return $this->winner;
     }
 
-    public function setWinner(?User $Winner): self
+    public function setWinner(?User $winner): self
     {
-        $this->Winner = $Winner;
+        $this->winner = $winner;
 
         return $this;
     }
 
     public function getState(): ?string
     {
-        return $this->State;
+        return $this->state;
     }
 
-    public function setState(string $State): self
+    public function setState(string $state): self
     {
-        $this->State = $State;
+        $this->state = $state;
 
         return $this;
     }
 
     public function getAccepted(): ?bool
     {
-        return $this->Accepted;
+        return $this->accepted;
     }
 
-    public function setAccepted(?bool $Accepted): self
+    public function setAccepted(?bool $accepted): self
     {
-        $this->Accepted = $Accepted;
+        $this->accepted = $accepted;
 
         return $this;
     }
 
     public function getStock(): ?Stock
     {
-        return $this->Stock;
+        return $this->stock;
     }
 
-    public function setStock(?Stock $Stock): self
+    public function setStock(?Stock $stock): self
     {
-        $this->Stock = $Stock;
+        $this->stock = $stock;
 
         return $this;
     }
@@ -152,30 +149,6 @@ class Battle
         return $this;
     }
 
-    public function getStockPercentagePrediction(): ?int
-    {
-        return $this->Stock_percentage_prediction;
-    }
-
-    public function setStockPercentagePrediction(int $Stock_percentage_prediction): self
-    {
-        $this->Stock_percentage_prediction = $Stock_percentage_prediction;
-
-        return $this;
-    }
-
-    public function getPredictionDate(): ?\DateTimeInterface
-    {
-        return $this->predictionDate;
-    }
-
-    public function setPredictionDate(\DateTimeInterface $predictionDate): self
-    {
-        $this->predictionDate = $predictionDate;
-
-        return $this;
-    }
-
     public function getBattleDate(): ?\DateTimeInterface
     {
         return $this->battleDate;
@@ -184,6 +157,18 @@ class Battle
     public function setBattleDate(\DateTimeInterface $battleDate): self
     {
         $this->battleDate = $battleDate;
+
+        return $this;
+    }
+
+    public function getAmount(): ?string
+    {
+        return $this->amount;
+    }
+
+    public function setAmount(string $amount): self
+    {
+        $this->amount = $amount;
 
         return $this;
     }

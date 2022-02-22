@@ -1,29 +1,20 @@
 <div class="modal" id="fight_modal" style="display:none;">
     <div class="modal_wrapper fight_modal_stop" aria-hidden="true" roles="dialog" aria-labelled-by="modal_title">
-        <form action="{{ path('home') }}" id="fight_form">
+        {{ form_start(battle_form, {'attr' : {'id' : 'fight_form'}}) }}
             <div class="form" id="fightModal_step1">
                 <p>On which stock do you want to bet ?</p>
                 <div>Search...</div>
-                <select name="stock">
-                    {% for stock in all_stocks %}
-                    <h2>{{ stock.companyName }}</h2>
-                    <option type="checkbox" name="{{ stock.companyName }}" value="{{ stock.companyName }}">{{ stock.companyName }}</option>
-                    {% endfor %}
-                </select>
+                {{ form_label(battle_form.stock, 'Nom de l\'action') }}
+                {{ form_row(battle_form.stock) }}
                 <div class="btn_box">
                     <button type="button" id="fightModal_next1">Next</button>
                 </div>
             </div>
-
             <div class="form" id="fightModal_step2">
-
                 <p>What is your predicition ?</p>
-                <select name="stock">
-                    <option type="checkbox" name="prediction_direction" value="up">Stock price is going to go up</option>
-                    <option type="checkbox" name="prediction_direction" value="down">Stock price is going to go down</option>
-                </select><br>
-                In <input type="text" name="prediction_date" placeholder="ex: 30"> days <br>
-                By <input type="text" name="prediction_percentage" placeholder="ex: 150"> %
+                {{ form_label(battle_form.stockDirectionPrediction, 'Prediction') }}
+                {{ form_row(battle_form.stockDirectionPrediction) }}
+
                 <div class="btn_box">
                     <button type="button" id="fightModal_back1">Back</button>
                     <button type="button" id="fightModal_next2">Next</button>
@@ -32,12 +23,13 @@
 
             <div class="form" id="fightModal_step3">
                 <p>How much do you want to bet ?</p>
-                <input type="text" name="bet_amount" placeholder="ex: 500"> €
+                {{ form_label(battle_form.stockDirectionPrediction, 'Amount') }}
+                {{ form_row(battle_form.amount) }}
                 <div class="btn_box">
                     <button type="button" id="fightModal_back2">Back</button>
                 </div>
             </div>
         <button type="submit">Submit</button>
-        </form>
+        {{ form_end(battle_form) }}
     </div>
 </div>
