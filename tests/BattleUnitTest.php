@@ -25,7 +25,7 @@ class BattleUnitTest extends TestCase
                ->setBattleDate($dateTime)
                ->setState('doing')
                ->setAccepted(true)
-               ->setStockDirectionPrediction('up')
+               ->setstockVariationDirectionPrediction('up')
                ->setStockPercentagePrediction(48)
                ->setPredictionDate($dateTime)
         ;
@@ -36,7 +36,7 @@ class BattleUnitTest extends TestCase
         $this->assertTrue($battle->getBattleDate() === $dateTime);
         $this->assertTrue($battle->getState() === 'doing');
         $this->assertTrue($battle->getAccepted() === true);
-        $this->assertTrue($battle->getStockDirectionPrediction() === 'up');
+        $this->assertTrue($battle->getStockVariationDirectionPrediction() === 'up');
         $this->assertTrue($battle->getStockPercentagePrediction() == 48);
         $this->assertTrue($battle->getPredictionDate() === $dateTime);
     }
@@ -55,7 +55,7 @@ class BattleUnitTest extends TestCase
                ->setBattleDate($dateTime)
                ->setState('Doing')
                ->setAccepted(true)
-               ->setStockDirectionPrediction('up')
+               ->setStockVariationDirectionPrediction('up')
                ->setStockPercentagePrediction(48)
                ->setPredictionDate($dateTime)
         ;
@@ -66,7 +66,7 @@ class BattleUnitTest extends TestCase
         $this->assertFalse($battle->getBattleDate() === 'false');
         $this->assertFalse($battle->getState() === 'false');
         $this->assertFalse($battle->getAccepted() === false);
-        $this->assertFalse($battle->getStockDirectionPrediction() === 'false');
+        $this->assertFalse($battle->getStockVariationDirectionPrediction() === 'false');
         $this->assertFalse($battle->getStockPercentagePrediction() === 'false');
         $this->assertFalse($battle->getPredictionDate() === 'false');
     }
