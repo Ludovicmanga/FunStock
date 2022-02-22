@@ -47,4 +47,15 @@ class BattleRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findPendingBattleRequestsByDefender($user)
+    {
+        return $this->createQueryBuilder('battle')
+            ->Where('battle.defender = '.$user->getId())
+            ->andWhere('battle.state = :state')
+            ->setParameter('state', 'pending')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

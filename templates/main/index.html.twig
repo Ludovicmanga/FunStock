@@ -46,19 +46,23 @@
 <div class="main_boxes_row">
     <div class="main_box">
         <h1 class="main_box_title">My battle requests</h1>
-        <div id="battle_requests_box_wrapper">
-            <div class="profile_box_container">
-                <div class="profile_picture_container">
-                    <img src="{{ asset('uploads/profile_man.jpg') }}">
+        {% if pending_battle_requests %}
+            {% for pending_battle_request in pending_battle_requests %}
+                <div id="battle_requests_box_wrapper">
+                    <div class="profile_box_container">
+                        <div class="profile_picture_container">
+                            <img src="{{ asset('uploads/profile_man.jpg') }}">
+                        </div>
+                        <h3>{{ pending_battle_request.attacker.firstName }}</h3>
+                    </div>
+                    <div id="view_challenge_btn">View the challenge</div>
+                    <div id="pending_challenge_btn">
+                        <span>Pending...</span>
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
                 </div>
-                <h3>Jack</h3>
-            </div>
-            <div id="view_challenge_btn">View the challenge</div>
-            <div id="pending_challenge_btn">
-                <span>Pending...</span>
-                <i class="fa-regular fa-clock"></i>
-            </div>
-        </div>
+            {% endfor %}
+        {% endif %}
     </div>
     <div class="main_box">
         <h1 class="main_box_title">Buy or sell stocks</h1>

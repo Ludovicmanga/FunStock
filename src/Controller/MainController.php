@@ -7,6 +7,7 @@ use App\Entity\Battle;
 use App\Form\BattleType;
 use App\Repository\UserRepository;
 use App\Repository\StockRepository;
+use App\Repository\BattleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +16,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
 {
-    public function __construct(StockRepository $stockRepository, UserRepository $userRepository, EntityManagerInterface $entityManager){
+    public function __construct(StockRepository $stockRepository, UserRepository $userRepository, BattleRepository $battleRepository, EntityManagerInterface $entityManager){
         $this->stockRepository = $stockRepository;
         $this->userRepository = $userRepository;
         $this->entityManager = $entityManager;
+        $this->battleRepository = $battleRepository;
     }
 
     #[Route('/home', name: 'home')]
@@ -32,7 +34,6 @@ class MainController extends AbstractController
         $battleForm->handleRequest($request);
 
         if($battleForm->isSubmitted() && $battleForm->isValid()){
-
             $battle->setBattleDate(new DateTime)
                    ->setAttacker($this->getUser())
                    ->setDefender($this->userRepository->findOneById($request->request->get('defender')))
@@ -45,11 +46,15 @@ class MainController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
+        // We get the battle requests of the user
+        $pendingBattleRequests = $this->battleRepository->findPendingBattleRequestsByDefender($this->getUser());
+
         return $this->render('main/index.html.twig', [
             'battle_form' => $battleForm->createView(),
             'controller_name' => 'MainController',
             'all_stocks' => $allStocks,
-            'all_users' => $allUsers
+            'all_users' => $allUsers,
+            'pending_battle_requests' => $pendingBattleRequests
         ]);
     }
 }
