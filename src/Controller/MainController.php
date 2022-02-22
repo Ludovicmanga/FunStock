@@ -8,6 +8,7 @@ use App\Form\BattleType;
 use App\Repository\UserRepository;
 use App\Repository\StockRepository;
 use App\Repository\BattleRepository;
+use App\Services\BattleServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,11 +17,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
 {
-    public function __construct(StockRepository $stockRepository, UserRepository $userRepository, BattleRepository $battleRepository, EntityManagerInterface $entityManager){
+    public function __construct(
+        StockRepository $stockRepository,
+        UserRepository $userRepository,
+        BattleRepository $battleRepository, EntityManagerInterface $entityManager,
+        BattleServiceInterface $battleService
+    ){
         $this->stockRepository = $stockRepository;
         $this->userRepository = $userRepository;
         $this->entityManager = $entityManager;
         $this->battleRepository = $battleRepository;
+        $this->battleService = $battleService;
     }
 
     #[Route('/home', name: 'home')]
@@ -34,15 +41,7 @@ class MainController extends AbstractController
         $battleForm->handleRequest($request);
 
         if($battleForm->isSubmitted() && $battleForm->isValid()){
-            $battle->setBattleDate(new DateTime)
-                   ->setAttacker($this->getUser())
-                   ->setDefender($this->userRepository->findOneById($request->request->get('defender')))
-                   ->setState('pending')
-            ;
-
-            $this->entityManager->persist($battle);
-            $this->entityManager->flush();
-
+            $this->battleService->createBattle($battle, $request);
             return $this->redirectToRoute('home');
         }
 
