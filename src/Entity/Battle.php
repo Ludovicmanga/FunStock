@@ -38,15 +38,15 @@ class Battle
     #[ORM\ManyToOne(targetEntity: Stock::class, inversedBy: 'battles')]
     #[ORM\JoinColumn(nullable: false)]
     private $stock;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $stockDirectionPrediction;
     
     #[ORM\Column(type: 'datetime')]
     private $battleDate;
 
     #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
     private $amount;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $stockVariationDirectionPrediction;
 
     public function getId(): ?int
     {
@@ -137,18 +137,6 @@ class Battle
         return $this;
     }
 
-    public function getStockDirectionPrediction(): ?string
-    {
-        return $this->stockDirectionPrediction;
-    }
-
-    public function setStockDirectionPrediction(string $stockDirectionPrediction): self
-    {
-        $this->stockDirectionPrediction = $stockDirectionPrediction;
-
-        return $this;
-    }
-
     public function getBattleDate(): ?\DateTimeInterface
     {
         return $this->battleDate;
@@ -169,6 +157,18 @@ class Battle
     public function setAmount(string $amount): self
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    public function getStockVariationDirectionPrediction(): ?string
+    {
+        return $this->stockVariationDirectionPrediction;
+    }
+
+    public function setStockVariationDirectionPrediction(string $stockVariationDirectionPrediction): self
+    {
+        $this->stockVariationDirectionPrediction = $stockVariationDirectionPrediction;
 
         return $this;
     }

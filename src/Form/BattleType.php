@@ -13,7 +13,7 @@ class BattleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('stockDirectionPrediction', ChoiceType::class, [
+            ->add('stockVariationDirectionPrediction', ChoiceType::class, [
                 'choices' => [
                     'The stock is going up' => 'up',
                     'The stock is going down' => 'down'

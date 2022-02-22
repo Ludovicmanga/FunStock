@@ -1,4 +1,4 @@
-/* Not clickable */
+/* General properties */
 
 body {
     background-color: #e280fc;
@@ -18,6 +18,10 @@ body {
 
 .not-clickable {
     pointer-events: none;
+}
+
+a {
+    text-decoration: none;
 }
 
 /* Home page */
@@ -57,7 +61,7 @@ body {
     display: flex;
 }
 
-#view_battle_requests_btn {
+.view_battle_requests_btn {
     padding: 10px;
     border-radius: 15px;
     background: black;

@@ -2,84 +2,99 @@
 
 {% block title %}FunStock !{% endblock %}
 
-{% block javascripts %}
-    
-{% endblock %}
-
 {% block body %}
 
-<div class="main_boxes_row">
-    <div class="main_box">
-        <h1 class="main_box_title">Your results (last 30 days)</h1>
-    </div>
-    <div class="main_box">
-        <h1 class="main_box_title">Challenge your friends</h1>
-        {% for user in all_users %}
-        <div id="challenge_friends_box_wrapper">
-            <div class="profile_box_container">
-                <div class="profile_picture_container">
-                    <img src="{{ asset('uploads/profile_man.jpg') }}">
-                </div>
-                <h3>{{ user.firstName }}</h3>
+    {# We get (without displaying) all the battle details to show them inside the modal #}
+    
+    {% for battle in all_battles %}
+        <div style="display:none;">
+            <div id="{{ battle.id }}_battle_preview_amount">
+                {{ battle.amount }}
             </div>
-            <div class="stock_valuation_box_container">
-                <h3>Stock Valuation</h3>
-                <div>
-                    <div>+ 7%</div>
-                    <i class="fa-solid fa-rocket"></i>
-                </div>
+            <div id="{{ battle.id }}_battle_preview_stock">
+                {{ battle.stock }}
             </div>
-            <div class="last_fights_box">
-                <div>3 wins</div>
-                <i class="fa-solid fa-trophy"></i>
-                <div>2 losses</div>
-                <i class="fa-solid fa-skull-crossbones"></i>
+            <div id="{{ battle.id }}_battle_preview_variation_direction_prediction">
+                {{ battle.stockVariationDirectionPrediction }}
             </div>
-            <a class="fight_btn" href="#fight_modal" id="{{ user.id }}_fight_btn">
-                <div class="not-clickable">Fight {{ user.firstName }}</div>
-                <i class="fa-solid fa-bomb not-clickable"></i>
-            </a>
         </div>
-        {% endfor %}
-    </div>
-</div>
-<div class="main_boxes_row">
-    <div class="main_box">
-        <h1 class="main_box_title">My battle requests</h1>
-        {% if pending_battle_requests %}
-            {% for pending_battle_request in pending_battle_requests %}
-                <div id="battle_requests_box_wrapper">
-                    <div class="profile_box_container">
-                        <div class="profile_picture_container">
-                            <img src="{{ asset('uploads/profile_man.jpg') }}">
-                        </div>
-                        <h3>{{ pending_battle_request.attacker.firstName }}</h3>
+    {% endfor %}
+
+    <div class="main_boxes_row">
+        <div class="main_box">
+            <h1 class="main_box_title">Your results (last 30 days)</h1>
+        </div>
+        <div class="main_box">
+            <h1 class="main_box_title">Challenge your friends</h1>
+            {% for user in all_users %}
+            <div id="challenge_friends_box_wrapper">
+                <div class="profile_box_container">
+                    <div class="profile_picture_container">
+                        <img src="{{ asset('uploads/profile_man.jpg') }}">
                     </div>
-                    <div id="view_battle_requests_btn">View the challenge</div>
-                    <div id="pending_challenge_btn">
-                        <span>Pending...</span>
-                        <i class="fa-regular fa-clock"></i>
+                    <h3>{{ user.firstName }}</h3>
+                </div>
+                <div class="stock_valuation_box_container">
+                    <h3>Stock Valuation</h3>
+                    <div>
+                        <div>+ 7%</div>
+                        <i class="fa-solid fa-rocket"></i>
                     </div>
                 </div>
+                <div class="last_fights_box">
+                    <div>3 wins</div>
+                    <i class="fa-solid fa-trophy"></i>
+                    <div>2 losses</div>
+                    <i class="fa-solid fa-skull-crossbones"></i>
+                </div>
+                <a class="fight_btn" href="#fight_modal" id="{{ user.id }}_fight_btn">
+                    <div class="not-clickable">Fight {{ user.firstName }}</div>
+                    <i class="fa-solid fa-bomb not-clickable"></i>
+                </a>
+            </div>
             {% endfor %}
-        {% endif %}
-    </div>
-    <div class="main_box">
-        <h1 class="main_box_title">Buy or sell stocks</h1>
-        <div id="buy_sell_stock_box_wrapper">
-            <div id="buy_sell_stock_toggle_btn">Buy / Sell</div>
-            <div id="buy_stock_box_amount">0 $</div>
-            <div>
-                <div id="buy_stock_box_stock_choice_btn">
-                    <div class="stock_logo_container">
-                        <img src="{{ asset('uploads/apple_logo.png')}}">
-                    </div>
-                </div>
-                <h2>Apple<h2>
-            </div>
-            <div id="buy_sell_stock_submit_btn">Buy stocks<div>
         </div>
     </div>
-</div>
-{% include 'fightModal.html.twig' %}
+    <div class="main_boxes_row">
+        <div class="main_box">
+            <h1 class="main_box_title">My battle requests</h1>
+            {% if pending_battle_requests %}
+                {% for pending_battle_request in pending_battle_requests %}
+                    <div id="battle_requests_box_wrapper">
+                        <div class="profile_box_container">
+                            <div class="profile_picture_container">
+                                <img src="{{ asset('uploads/profile_man.jpg') }}">
+                            </div>
+                            <h3>{{ pending_battle_request.attacker.firstName }}</h3>
+                        </div>
+                        <a href="#view_battle_requests_modal" class="view_battle_requests_btn" id="{{ pending_battle_request.id }}_view_battle_requests_btn">
+                            <div class="not-clickable">View the challenge</div>
+                        </a>
+                        <div id="pending_challenge_btn">
+                            <span>Pending...</span>
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="main_box">
+            <h1 class="main_box_title">Buy or sell stocks</h1>
+            <div id="buy_sell_stock_box_wrapper">
+                <div id="buy_sell_stock_toggle_btn">Buy / Sell</div>
+                <div id="buy_stock_box_amount">0 $</div>
+                <div>
+                    <div id="buy_stock_box_stock_choice_btn">
+                        <div class="stock_logo_container">
+                            <img src="{{ asset('uploads/apple_logo.png')}}">
+                        </div>
+                    </div>
+                    <h2>Apple<h2>
+                </div>
+                <div id="buy_sell_stock_submit_btn">Buy stocks<div>
+            </div>
+        </div>
+    </div>
+    {% include 'modals/fightModal.html.twig' %}
+    {% include 'modals/viewBattleRequestsModal.html.twig' %}
 {% endblock %}
