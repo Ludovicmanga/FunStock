@@ -3,11 +3,16 @@
 namespace App\Controller;
 
 use DateTime;
+use App\Entity\Stock;
 use App\Entity\Battle;
+use GuzzleHttp\Client;
 use App\Form\BattleType;
+use Finnhub\Configuration;
+use Finnhub\Api\DefaultApi;
 use App\Repository\UserRepository;
 use App\Repository\StockRepository;
 use App\Repository\BattleRepository;
+use App\Services\UserServiceInterface;
 use App\Services\BattleServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,21 +26,29 @@ class MainController extends AbstractController
         StockRepository $stockRepository,
         UserRepository $userRepository,
         BattleRepository $battleRepository, EntityManagerInterface $entityManager,
-        BattleServiceInterface $battleService
+        BattleServiceInterface $battleService,
+        UserServiceInterface $userService
     ){
         $this->stockRepository = $stockRepository;
         $this->userRepository = $userRepository;
         $this->entityManager = $entityManager;
         $this->battleRepository = $battleRepository;
         $this->battleService = $battleService;
+        $this->userService = $userService;
     }
 
     #[Route('/home', name: 'home')]
-    public function index(Request $request): Response
+    public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $allStocks = $this->stockRepository->findAll();
-        $allUsers = $this->userRepository->findAll();
-        
+        $allUsersButLoggedOne = $this->userService->findAllUsersButLoggedOne($this->getUser());
+
+        foreach($allUsersButLoggedOne as $user){
+            $user->setNumberOfWinnedBattles(count($user->getWinnedBattles()))
+                 ->setNumberOfLostBattles(count($user->getLostBattles()))
+            ;
+        }
+
         $battle = new Battle;
         $battleForm = $this->createForm(BattleType::class, $battle);
         $battleForm->handleRequest($request);
@@ -55,7 +68,7 @@ class MainController extends AbstractController
             'battle_form' => $battleForm->createView(),
             'controller_name' => 'MainController',
             'all_stocks' => $allStocks,
-            'all_users' => $allUsers,
+            'all_users_but_logged_one' => $allUsersButLoggedOne,
             'pending_inbound_battle_requests' => $pendingInboundBattleRequests,
             'pending_outbound_battle_requests' => $pendingOutboundBattleRequests,
             'all_battles' => $allBattles

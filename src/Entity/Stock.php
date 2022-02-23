@@ -30,6 +30,9 @@ class Stock
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'ownedStocks')]
     private $owner;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $symbol;
+
     public function __construct()
     {
         $this->stockTransactions = new ArrayCollection();
@@ -139,5 +142,17 @@ class Stock
 
     public function __toString() {
         return $this->companyName;
+    }
+
+    public function getSymbol(): ?string
+    {
+        return $this->symbol;
+    }
+
+    public function setSymbol(string $symbol): self
+    {
+        $this->symbol = $symbol;
+
+        return $this;
     }
 }
