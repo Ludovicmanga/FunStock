@@ -26,7 +26,7 @@
         </div>
         <div class="main_box">
             <h1 class="main_box_title">Challenge your friends</h1>
-            {% for user in all_users %}
+            {% for user in all_users_but_logged_one %}
             <div id="challenge_friends_box_wrapper">
                 <div class="profile_box_container">
                     <div class="profile_picture_container">
@@ -42,9 +42,9 @@
                     </div>
                 </div>
                 <div class="last_fights_box">
-                    <div>3 wins</div>
+                    <div>{{ user.numberOfWinnedBattles }} wins</div>
                     <i class="fa-solid fa-trophy"></i>
-                    <div>2 losses</div>
+                    <div>{{ user.numberOfLostBattles }} losses</div>
                     <i class="fa-solid fa-skull-crossbones"></i>
                 </div>
                 <a class="fight_btn" href="#fight_modal" id="{{ user.id }}_fight_btn">
@@ -88,7 +88,7 @@
                             <div class="profile_picture_container">
                                 <img src="{{ asset('uploads/profile_man.jpg') }}">
                             </div>
-                            <h3>{{ pending_outbound_battle_request.attacker.firstName }}</h3>
+                            <h3>{{ pending_outbound_battle_request.defender.firstName }}</h3>
                         </div>
                         <a href="#view_battle_request_modal" class="view_battle_request_btn" id="{{ pending_outbound_battle_request.id }}_view_battle_request_btn">
                             <div class="not-clickable">View the challenge</div>

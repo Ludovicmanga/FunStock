@@ -47,23 +47,19 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-        $stocksArray = [
-            'Apple',
-            'Tesla',
-            'Microsoft',
-            'SoftBank',
-            'Meta',
-            'Google'
-        ];
+        $encodedStockListFromAPI = file_get_contents('https://financialmodelingprep.com/api/v3/stock/list?apikey=8a6cb36615e4103bc91599f35b90884e');
 
-        foreach($stocksArray as $stock) {
+        $decodedStockList = json_decode($encodedStockListFromAPI,true);
+
+        foreach($decodedStockList as $stockFromApi){
             $stockObject = new Stock;
-            $stockObject->setCompanyName($stock)
-                        ->setCurrentPrice(10)
+            $stockObject->setCompanyName($stockFromApi['name'])
+                        ->setCurrentPrice($stockFromApi['price'])
+                        ->setSymbol($stockFromApi['symbol'])
             ;
+
             $manager->persist($stockObject);
         }
-
         $manager->flush();
     }
 }

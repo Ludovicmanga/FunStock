@@ -27,10 +27,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $FirstName;
+    private $firstName;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $LastName;
+    private $lastName;
 
     #[ORM\OneToMany(mappedBy: 'User', targetEntity: StockTransaction::class)]
     private $stockTransactions;
@@ -38,16 +38,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'attacker', targetEntity: Battle::class)]
     private $battlesAsAttacker;
 
-    #[ORM\OneToMany(mappedBy: 'Defender', targetEntity: Battle::class)]
+    #[ORM\OneToMany(mappedBy: 'defender', targetEntity: Battle::class)]
     private $battlesAsDefender;
 
-    #[ORM\OneToMany(mappedBy: 'Loser', targetEntity: Battle::class)]
+    #[ORM\OneToMany(mappedBy: 'loser', targetEntity: Battle::class)]
     private $lostBattles;
 
-    #[ORM\OneToMany(mappedBy: 'Winner', targetEntity: Battle::class)]
+    #[ORM\OneToMany(mappedBy: 'winner', targetEntity: Battle::class)]
     private $winnedBattles;
 
-    #[ORM\OneToMany(mappedBy: 'Owner', targetEntity: Stock::class)]
+    #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Stock::class)]
     private $ownedStocks;
 
     #[ORM\Column(type: 'integer', nullable: true)]
@@ -55,6 +55,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private $defeats;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $numberOfWinnedBattles;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $numberOfLostBattles;
 
     public function __construct()
     {
@@ -138,24 +144,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getFirstName(): ?string
     {
-        return $this->FirstName;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $FirstName): self
+    public function setFirstName(string $firstName): self
     {
-        $this->FirstName = $FirstName;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     public function getLastName(): ?string
     {
-        return $this->LastName;
+        return $this->lastName;
     }
 
-    public function setLastName(string $LastName): self
+    public function setLastName(string $lastName): self
     {
-        $this->LastName = $LastName;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -360,6 +366,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDefeats(?int $defeats): self
     {
         $this->defeats = $defeats;
+
+        return $this;
+    }
+
+    public function getNumberOfWinnedBattles(): ?int
+    {
+        return $this->numberOfWinnedBattles;
+    }
+
+    public function setNumberOfWinnedBattles(?int $numberOfWinnedBattles): self
+    {
+        $this->numberOfWinnedBattles = $numberOfWinnedBattles;
+
+        return $this;
+    }
+
+    public function getNumberOfLostBattles(): ?int
+    {
+        return $this->numberOfLostBattles;
+    }
+
+    public function setNumberOfLostBattles(?int $numberOfLostBattles): self
+    {
+        $this->numberOfLostBattles = $numberOfLostBattles;
 
         return $this;
     }

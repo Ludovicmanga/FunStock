@@ -11,6 +11,7 @@ Class BattleService implements BattleServiceInterface
 {
     private $entityManager;
     private $userRepository;
+    private $battleRepository;
 
     public function __construct(
         EntityManagerInterface $entityManager,
