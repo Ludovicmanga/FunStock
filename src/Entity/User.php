@@ -56,7 +56,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer', nullable: true)]
     private $numberOfLostBattles;
 
-    #[ORM\OneToMany(mappedBy: 'Owner', targetEntity: StockAsset::class)]
+    #[ORM\OneToMany(mappedBy: 'owner', targetEntity: StockAsset::class)]
     private $stockAssets;
 
     public function __construct()

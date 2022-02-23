@@ -94,28 +94,21 @@
                             <div class="not-clickable">View the challenge</div>
                         </a>
                         <div class="pending_inbound_battle_request_disclaimer_container">
-                        <span>Pending...</span>
-                        <i class="fa-regular fa-clock"></i>
+                            <span>Pending...</span>
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
                     </div>
-                    </div>
-                    
                 {% endfor %}
             {% endif %}
         </div>
         <div class="main_box">
-            <h1 class="main_box_title">Buy or sell stocks</h1>
+            <h1 class="main_box_title">Buy stocks</h1>
             <div id="buy_sell_stock_box_wrapper">
-                <div id="buy_sell_stock_toggle_btn">Buy / Sell</div>
-                <div id="buy_stock_box_amount">0 $</div>
-                <div>
-                    <div id="buy_stock_box_stock_choice_btn">
-                        <div class="stock_logo_container">
-                            <img src="{{ asset('uploads/apple_logo.png')}}">
-                        </div>
-                    </div>
-                    <h2>Apple<h2>
-                </div>
-                <div id="buy_sell_stock_submit_btn">Buy stocks<div>
+                {{ form_start(buy_or_sell_stocks_form, {'attr' : {'id' : 'buy_or_sell_stocks_form'}}) }}
+                    <input type="number" name="stock_amount">
+                    {{ form_row(buy_or_sell_stocks_form.stock) }}
+                    <button id="buy_sell_stock_submit_btn">Buy stocks</button>
+                {{ form_end(buy_or_sell_stocks_form) }}
             </div>
         </div>
     </div>

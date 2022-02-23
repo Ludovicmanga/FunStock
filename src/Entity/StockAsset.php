@@ -17,13 +17,16 @@ class StockAsset
 
     #[ORM\ManyToOne(targetEntity: Stock::class, inversedBy: 'stockAssets')]
     #[ORM\JoinColumn(nullable: false)]
-    private $Stock;
+    private $stock;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'stockAssets')]
-    private $Owner;
+    private $owner;
 
     #[ORM\OneToMany(mappedBy: 'stockAsset', targetEntity: StockTransaction::class)]
     private $stockTransactions;
+
+    #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
+    private $quantity;
 
     public function __construct()
     {
@@ -37,24 +40,24 @@ class StockAsset
 
     public function getStock(): ?Stock
     {
-        return $this->Stock;
+        return $this->stock;
     }
 
-    public function setStock(?Stock $Stock): self
+    public function setStock(?Stock $stock): self
     {
-        $this->Stock = $Stock;
+        $this->stock = $stock;
 
         return $this;
     }
 
     public function getOwner(): ?User
     {
-        return $this->Owner;
+        return $this->owner;
     }
 
-    public function setOwner(?User $Owner): self
+    public function setOwner(?User $owner): self
     {
-        $this->Owner = $Owner;
+        $this->owner = $owner;
 
         return $this;
     }
@@ -85,6 +88,18 @@ class StockAsset
                 $stockTransaction->setStockAsset(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getQuantity(): ?string
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(string $quantity): self
+    {
+        $this->quantity = $quantity;
 
         return $this;
     }
