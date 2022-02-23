@@ -51,16 +51,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $ownedStocks;
 
     #[ORM\Column(type: 'integer', nullable: true)]
-    private $wins;
-
-    #[ORM\Column(type: 'integer', nullable: true)]
-    private $defeats;
-
-    #[ORM\Column(type: 'integer', nullable: true)]
     private $numberOfWinnedBattles;
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private $numberOfLostBattles;
+
+    #[ORM\OneToMany(mappedBy: 'Owner', targetEntity: StockAsset::class)]
+    private $stockAssets;
 
     public function __construct()
     {
@@ -70,6 +67,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->lostBattles = new ArrayCollection();
         $this->winnedBattles = new ArrayCollection();
         $this->ownedStocks = new ArrayCollection();
+        $this->stockAssets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -346,30 +344,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getWins(): ?int
-    {
-        return $this->wins;
-    }
-
-    public function setWins(?int $wins): self
-    {
-        $this->wins = $wins;
-
-        return $this;
-    }
-
-    public function getDefeats(): ?int
-    {
-        return $this->defeats;
-    }
-
-    public function setDefeats(?int $defeats): self
-    {
-        $this->defeats = $defeats;
-
-        return $this;
-    }
-
     public function getNumberOfWinnedBattles(): ?int
     {
         return $this->numberOfWinnedBattles;
@@ -390,6 +364,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setNumberOfLostBattles(?int $numberOfLostBattles): self
     {
         $this->numberOfLostBattles = $numberOfLostBattles;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|StockAsset[]
+     */
+    public function getStockAssets(): Collection
+    {
+        return $this->stockAssets;
+    }
+
+    public function addStockAsset(StockAsset $stockAsset): self
+    {
+        if (!$this->stockAssets->contains($stockAsset)) {
+            $this->stockAssets[] = $stockAsset;
+            $stockAsset->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStockAsset(StockAsset $stockAsset): self
+    {
+        if ($this->stockAssets->removeElement($stockAsset)) {
+            // set the owning side to null (unless already changed)
+            if ($stockAsset->getOwner() === $this) {
+                $stockAsset->setOwner(null);
+            }
+        }
 
         return $this;
     }

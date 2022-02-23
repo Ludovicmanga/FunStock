@@ -43,6 +43,9 @@ class MainController extends AbstractController
         $allStocks = $this->stockRepository->findAll();
         $allUsersButLoggedOne = $this->userService->findAllUsersButLoggedOne($this->getUser());
 
+        dump(count($this->getUser()->getLostBattles()));
+        dd($this->getUser()->getDefeats());
+
         foreach($allUsersButLoggedOne as $user){
             $user->setNumberOfWinnedBattles(count($user->getWinnedBattles()))
                  ->setNumberOfLostBattles(count($user->getLostBattles()))
