@@ -19,4 +19,8 @@
         </div>
     </body>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script>
+        var acceptBattleRequestUrl = "{{ path('battle_accept_request', {'battle': 'battle_id'}) }}";
+        var declineBattleRequestUrl = "{{ path('battle_decline_request', {'battle': 'battle_id'}) }}";
+    </script>
 </html>

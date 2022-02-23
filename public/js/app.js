@@ -82,7 +82,7 @@ const openViewBattleRequestsModal = function (e, modalStop) {
     battleAmount = document.getElementById(id+'_battle_preview_stock');
     battleStock = document.getElementById(id+'_battle_preview_amount');
     battleVariationDirectionPrediction = document.getElementById(id+'_battle_preview_variation_direction_prediction');
-    battleRequestsModalWrapper = document.getElementById('view_battle_requests_modal_wrapper');
+    battleRequestsModalWrapper = document.getElementById('view_battle_request_modal_wrapper');
     battleRequestsModalWrapper.append(
         battleAmount,
         battleStock,
@@ -91,10 +91,52 @@ const openViewBattleRequestsModal = function (e, modalStop) {
     openModal(e, modalStop, function(e){ closeViewBattleRequestsModal(e, modalStop); });
 }
 
+const acceptBattleRequest = function(e) {
+    e.preventDefault();
+    battleId = e.target.id.match(/^\d+/g)[0];
+    const requeteAjax = new XMLHttpRequest;
+    acceptBattleRequestUrl = acceptBattleRequestUrl.replace("battle_id", battleId);
+    requeteAjax.open('POST', acceptBattleRequestUrl, true)
+    requeteAjax.send();
+
+    // After updating the BDD, we put acceptBattleUrl back in its template mode, so that .replace functions work
+    acceptBattleRequestUrl = acceptBattleRequestUrl.replace(battleId, "battle_id");
+    window.setTimeout(function() {
+        document.getElementById(battleId+'_battle_request_box_wrapper').remove();
+    }, 500);
+}
+
+const declineBattleRequest = function(e) {
+    e.preventDefault();
+    battleId = e.target.id.match(/^\d+/g)[0];
+    const requeteAjax = new XMLHttpRequest;
+    declineBattleRequestUrl = declineBattleRequestUrl.replace("battle_id", battleId);
+    requeteAjax.open('POST', declineBattleRequestUrl, true)
+    requeteAjax.send();
+
+    // After updating the BDD, we put acceptBattleUrl back in its template mode, so that .replace functions work
+    declineBattleRequestUrl = declineBattleRequestUrl.replace(battleId, "battle_id");
+    window.setTimeout(function() {
+        document.getElementById(battleId+'_battle_request_box_wrapper').remove();
+    }, 500);
+}
+
 document.querySelectorAll('.fight_btn').forEach(a => {
     a.addEventListener('click', function(e){ openFightModal(e, '.fight_modal_stop'); });
 })
 
-document.querySelectorAll('.view_battle_requests_btn').forEach(a => {
-    a.addEventListener('click', function(e){ openViewBattleRequestsModal(e, '.view_battle_requests_modal_stop'); });
+document.querySelectorAll('.view_battle_request_btn').forEach(a => {
+    a.addEventListener('click', function(e){ openViewBattleRequestsModal(e, '.view_battle_request_modal_stop'); });
+})
+
+document.querySelectorAll('.accept_battle_request_btn').forEach(a => {
+    a.addEventListener('click', function(e){ 
+        acceptBattleRequest(e) 
+    });
+})
+
+document.querySelectorAll('.decline_battle_request_btn').forEach(a => {
+    a.addEventListener('click', function(e){
+        declineBattleRequest(e) 
+    });
 })
