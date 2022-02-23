@@ -58,23 +58,47 @@
     <div class="main_boxes_row">
         <div class="main_box">
             <h1 class="main_box_title">My battle requests</h1>
-            {% if pending_battle_requests %}
-                {% for pending_battle_request in pending_battle_requests %}
-                    <div id="battle_requests_box_wrapper">
+            {% if pending_inbound_battle_requests %}
+                {% for pending_inbound_battle_request in pending_inbound_battle_requests %}
+                    <div class="battle_request_box_wrapper" id="{{ pending_inbound_battle_request.id }}_battle_request_box_wrapper">
                         <div class="profile_box_container">
                             <div class="profile_picture_container">
                                 <img src="{{ asset('uploads/profile_man.jpg') }}">
                             </div>
-                            <h3>{{ pending_battle_request.attacker.firstName }}</h3>
+                            <h3>{{ pending_inbound_battle_request.attacker.firstName }}</h3>
                         </div>
-                        <a href="#view_battle_requests_modal" class="view_battle_requests_btn" id="{{ pending_battle_request.id }}_view_battle_requests_btn">
+                        <a href="#view_battle_request_modal" class="view_battle_request_btn" id="{{ pending_inbound_battle_request.id }}_view_battle_request_btn">
                             <div class="not-clickable">View the challenge</div>
                         </a>
-                        <div id="pending_challenge_btn">
-                            <span>Pending...</span>
-                            <i class="fa-regular fa-clock"></i>
-                        </div>
+                        <a href="#" class="accept_battle_request_btn" id="{{ pending_inbound_battle_request.id }}_accept_battle_request_btn">
+                            <span class="not-clickable">Accept</span>
+                            <i class="fa-solid fa-check not-clickable"></i>
+                        </a>
+                        <a href="#" class="decline_battle_request_btn" id="{{ pending_inbound_battle_request.id }}_decline_battle_request_btn">
+                            <span class="not-clickable">Decline</span>
+                            <i class="fa-solid fa-check not-clickable"></i>
+                        </a>
                     </div>
+                {% endfor %}
+            {% endif %}
+            {% if pending_outbound_battle_requests %}
+                {% for pending_outbound_battle_request in pending_outbound_battle_requests %}
+                    <div class="battle_request_box_wrapper" id="{{ pending_outbound_battle_request.id }}_battle_request_box_wrapper">
+                        <div class="profile_box_container">
+                            <div class="profile_picture_container">
+                                <img src="{{ asset('uploads/profile_man.jpg') }}">
+                            </div>
+                            <h3>{{ pending_outbound_battle_request.attacker.firstName }}</h3>
+                        </div>
+                        <a href="#view_battle_request_modal" class="view_battle_request_btn" id="{{ pending_outbound_battle_request.id }}_view_battle_request_btn">
+                            <div class="not-clickable">View the challenge</div>
+                        </a>
+                        <div class="pending_inbound_battle_request_disclaimer_container">
+                        <span>Pending...</span>
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+                    </div>
+                    
                 {% endfor %}
             {% endif %}
         </div>

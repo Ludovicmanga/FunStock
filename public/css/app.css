@@ -57,18 +57,44 @@ a {
 
 /* Battle requests box */
 
-#battle_requests_box_wrapper {
+.battle_request_box_wrapper {
     display: flex;
 }
 
-.view_battle_requests_btn {
+.view_battle_request_btn {
     padding: 10px;
     border-radius: 15px;
     background: black;
     color: white;
 }
 
-#pending_challenge_btn {
+.accept_battle_request_btn {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 15px;
+    border: solid black 1px;
+    background: #8cff87;
+}
+
+.accept_battle_request_btn:hover {
+    background: #88ffa7;
+}
+
+.decline_battle_request_btn {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 15px;
+    border: solid black 1px;
+    background: #e73e3d;
+}
+
+.decline_battle_request_btn:hover {
+    background: #f18277;
+}
+
+.pending_inbound_battle_request_disclaimer_container {
     display: flex;
     justify-content: space-between;
     padding: 10px;

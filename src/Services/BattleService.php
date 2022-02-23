@@ -36,6 +36,17 @@ Class BattleService implements BattleServiceInterface
             $this->entityManager->flush();
     }
 
+    public function findPendingInboundBattleRequestsByDefender($user)
+    {
+        return $this->battleRepository->findPendingInboundBattleRequestsByDefender($user);
+    }
+
+    public function findPendingOutboundBattleRequestsByAttacker($user)
+    {
+        return $this->battleRepository->findPendingOutboundPBattleRequestsByAttacker($user);
+    }
+
+
     public function findAll()
     {
         return $this->battleRepository->findAll();

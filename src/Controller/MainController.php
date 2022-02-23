@@ -47,7 +47,8 @@ class MainController extends AbstractController
         }
 
         // We get the battle requests of the user
-        $pendingBattleRequests = $this->battleRepository->findPendingBattleRequestsByDefender($this->getUser());
+        $pendingInboundBattleRequests = $this->battleService->findPendingInboundBattleRequestsByDefender($this->getUser());
+        $pendingOutboundBattleRequests = $this->battleRepository->findPendingOutboundBattleRequestsByAttacker($this->getUser());
         $allBattles = $this->battleService->findAll();
 
         return $this->render('main/index.html.twig', [
@@ -55,7 +56,8 @@ class MainController extends AbstractController
             'controller_name' => 'MainController',
             'all_stocks' => $allStocks,
             'all_users' => $allUsers,
-            'pending_battle_requests' => $pendingBattleRequests,
+            'pending_inbound_battle_requests' => $pendingInboundBattleRequests,
+            'pending_outbound_battle_requests' => $pendingOutboundBattleRequests,
             'all_battles' => $allBattles
         ]);
     }
