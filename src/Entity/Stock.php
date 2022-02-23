@@ -27,16 +27,17 @@ class Stock
     #[ORM\OneToMany(mappedBy: 'Stock', targetEntity: Battle::class)]
     private $battles;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'ownedStocks')]
-    private $owner;
-
     #[ORM\Column(type: 'string', length: 255)]
     private $symbol;
+
+    #[ORM\OneToMany(mappedBy: 'Stock', targetEntity: StockAsset::class)]
+    private $stockAssets;
 
     public function __construct()
     {
         $this->stockTransactions = new ArrayCollection();
         $this->battles = new ArrayCollection();
+        $this->stockAssets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -128,18 +129,6 @@ class Stock
         return $this;
     }
 
-    public function getOwner(): ?User
-    {
-        return $this->Owner;
-    }
-
-    public function setOwner(?User $Owner): self
-    {
-        $this->Owner = $Owner;
-
-        return $this;
-    }
-
     public function __toString() {
         return $this->companyName;
     }
@@ -152,6 +141,36 @@ class Stock
     public function setSymbol(string $symbol): self
     {
         $this->symbol = $symbol;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|StockAsset[]
+     */
+    public function getStockAssets(): Collection
+    {
+        return $this->stockAssets;
+    }
+
+    public function addStockAsset(StockAsset $stockAsset): self
+    {
+        if (!$this->stockAssets->contains($stockAsset)) {
+            $this->stockAssets[] = $stockAsset;
+            $stockAsset->setStock($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStockAsset(StockAsset $stockAsset): self
+    {
+        if ($this->stockAssets->removeElement($stockAsset)) {
+            // set the owning side to null (unless already changed)
+            if ($stockAsset->getStock() === $this) {
+                $stockAsset->setStock(null);
+            }
+        }
 
         return $this;
     }

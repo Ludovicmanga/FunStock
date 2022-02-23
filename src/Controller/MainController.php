@@ -7,8 +7,10 @@ use App\Entity\Stock;
 use App\Entity\Battle;
 use GuzzleHttp\Client;
 use App\Form\BattleType;
+use App\Entity\StockAsset;
 use Finnhub\Configuration;
 use Finnhub\Api\DefaultApi;
+use App\Form\BuyOrSellStocksType;
 use App\Repository\UserRepository;
 use App\Repository\StockRepository;
 use App\Repository\BattleRepository;
@@ -25,7 +27,8 @@ class MainController extends AbstractController
     public function __construct(
         StockRepository $stockRepository,
         UserRepository $userRepository,
-        BattleRepository $battleRepository, EntityManagerInterface $entityManager,
+        BattleRepository $battleRepository,
+        EntityManagerInterface $entityManager,
         BattleServiceInterface $battleService,
         UserServiceInterface $userService
     ){
@@ -59,6 +62,27 @@ class MainController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
+        $stockAsset = new StockAsset;
+        
+        $buyOrSellStocksForm = $this->createForm(BuyOrSellStocksType::class, $stockAsset);
+        $buyOrSellStocksForm->handleRequest($request);
+
+    
+
+        if($buyOrSellStocksForm->isSubmitted() && $buyOrSellStocksForm->isValid()){
+
+            $amountToSpend = (int) filter_var($request->request->get('stock_amount'), FILTER_SANITIZE_NUMBER_INT);
+            $numberOfActionsToBuy = round($amountToSpend / $stockAsset->getStock()->getCurrentPrice(), 5);
+            
+            $stockAsset->setOwner($this->getUser())
+                       ->setQuantity($numberOfActionsToBuy)
+            ;
+
+            $this->entityManager->persist($stockAsset);
+            $this->entityManager->flush();
+
+        }
+
         // We get the battle requests of the user
         $pendingInboundBattleRequests = $this->battleService->findPendingInboundBattleRequestsByDefender($this->getUser());
         $pendingOutboundBattleRequests = $this->battleRepository->findPendingOutboundBattleRequestsByAttacker($this->getUser());
@@ -66,6 +90,7 @@ class MainController extends AbstractController
 
         return $this->render('main/index.html.twig', [
             'battle_form' => $battleForm->createView(),
+            'buy_or_sell_stocks_form' => $buyOrSellStocksForm->createView(),
             'controller_name' => 'MainController',
             'all_stocks' => $allStocks,
             'all_users_but_logged_one' => $allUsersButLoggedOne,

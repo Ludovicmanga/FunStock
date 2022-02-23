@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use App\Repository\StockTransactionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\StockTransactionRepository;
 
 #[ORM\Entity(repositoryClass: StockTransactionRepository::class)]
 class StockTransaction
@@ -15,11 +15,7 @@ class StockTransaction
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'stockTransactions')]
     #[ORM\JoinColumn(nullable: false)]
-    private $Owner;
-
-    #[ORM\ManyToOne(targetEntity: Stock::class, inversedBy: 'stockTransactions')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $Stock;
+    private $owner;
 
     #[ORM\Column(type: 'integer')]
     private $Quantity;
@@ -30,6 +26,10 @@ class StockTransaction
     #[ORM\Column(type: 'string', length: 255)]
     private $type;
 
+    #[ORM\ManyToOne(targetEntity: stockAsset::class, inversedBy: 'stockTransactions')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $stockAsset;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -37,24 +37,12 @@ class StockTransaction
 
     public function getOwner(): ?User
     {
-        return $this->Owner;
+        return $this->owner;
     }
 
-    public function setOwner(?User $Owner): self
+    public function setOwner(?User $owner): self
     {
-        $this->Owner = $Owner;
-
-        return $this;
-    }
-
-    public function getStock(): ?Stock
-    {
-        return $this->Stock;
-    }
-
-    public function setStock(?Stock $Stock): self
-    {
-        $this->Stock = $Stock;
+        $this->owner = $owner;
 
         return $this;
     }
@@ -91,6 +79,18 @@ class StockTransaction
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getStockAsset(): ?stockAsset
+    {
+        return $this->stockAsset;
+    }
+
+    public function setStockAsset(?stockAsset $stockAsset): self
+    {
+        $this->stockAsset = $stockAsset;
 
         return $this;
     }

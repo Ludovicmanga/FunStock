@@ -1,5 +1,14 @@
 <nav class="main_nav_bar">
-    <li>Login</li>
-    <li>Profile</li>
+    {% if app.user %}
+        <a href="{{ path('app_logout') }}">
+            <li>Logout</li>
+        </a>
+    {% else %}
+        <a href="{{ path('app_login') }}">
+            <li>Login</li>
+        </a>
+    {% endif %}
+    
+    <li>My stocks</li>
     <li>Battles</li>
 </nav>
