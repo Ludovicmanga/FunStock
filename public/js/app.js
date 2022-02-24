@@ -147,3 +147,103 @@ document.querySelectorAll('.progress-done').forEach( progressBar => {
         progressBar.style.width = progressBar.getAttribute('data-done')+'%';
     }, 500)
 })
+
+// Start of chart config
+
+// first chart
+
+const createWinsChart = function(id) {
+    const ctx = document.getElementById(id).getContext('2d');
+    const winsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Wins', 'Defeats'],
+            datasets: [{
+                label: 'Wins and defeats',
+                data: [loggedUserNumberOfWinnedBattles, loggedUserNumberOfLostBattles],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+//We create the first wins chart
+
+createWinsChart('wins_chart');
+
+//second chart
+
+ const createStockValuationChart = function(id) {
+    console.log('hey')
+    const stockValuationChart = new Chart(
+        document.getElementById(id),
+        {
+            type: 'line',
+            data: {
+                labels: [
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June',
+                  ],
+                datasets: [{
+                  label: 'Value of my stocks',
+                  backgroundColor: 'rgb(255, 99, 132)',
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: [0, 10, 5, 2, 20, 30, 45],
+                }]
+              },
+            options: {}
+          }
+      );
+ }
+
+  //buttons actions for charts
+  
+  document.getElementById('wins_stats_button').addEventListener(
+       'click',
+        function(e){
+        openChart(e, 'wins_chart', function(e){ createWinsChart('wins_chart') }) 
+    })
+
+    document.getElementById('stock_valuation_stats_button').addEventListener(
+        'click',
+         function(e){
+         openChart(e, 'stock_valuation_chart', function(e){ createStockValuationChart('stock_valuation_chart') }) 
+     })
+
+
+    // chart functions
+
+    const openChart = function(e, id, chartCreationFunction){
+        e.preventDefault();
+        allCharts = document.querySelectorAll('.stats_chart').forEach( chart => {
+            chart.remove()
+        })
+        chartToCreate = document.createElement('canvas');
+        chartToCreate.setAttribute('id', id);
+        chartToCreate.setAttribute('class', 'stats_chart');
+        window.setTimeout(function() {
+            document.getElementById('stats_chart_container').append(chartToCreate),
+            chartCreationFunction()
+        }, 200);
+    }
+
+// End of chart config

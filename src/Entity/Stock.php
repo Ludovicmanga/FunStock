@@ -33,6 +33,12 @@ class Stock
     #[ORM\OneToMany(mappedBy: 'Stock', targetEntity: StockAsset::class)]
     private $stockAssets;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $logo;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $type;
+
     public function __construct()
     {
         $this->stockTransactions = new ArrayCollection();
@@ -171,6 +177,30 @@ class Stock
                 $stockAsset->setStock(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(string $logo): self
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

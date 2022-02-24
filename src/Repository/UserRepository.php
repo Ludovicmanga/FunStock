@@ -65,7 +65,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
     */
 
-    public function findAllUsersButLoggedOne($loggedUser)
+    public function findAllButLoggedOne($loggedUser)
     {
         return $this->createQueryBuilder('user')
             ->Where('NOT user.id ='.$loggedUser->getId())

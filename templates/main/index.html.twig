@@ -23,16 +23,22 @@
     <div class="main_boxes_row">
         <div class="main_box">
             <div class="main_box_title_container">
-                <h1 class="main_box_title">Your results (last 30 days)</h1>
-                <canvas id="myChart" width="400" height="400"></canvas>
+                <h1 class="main_box_title">Your stats</h1>
             </div>
+            <div id="stats_buttons_container">
+                    <a href="#wins_chart" class="stats_button" id="wins_stats_button">Wins / defeats</a>
+                    <a href="#stock_valuation_chart" class="stats_button" id="stock_valuation_stats_button">My stock valuation</a>
+                </div>
+                <div id="stats_chart_container">
+                    <canvas class="stats_chart" id="wins_chart"></canvas>
+                </div>
         </div>
         <div class="main_box">
             <div class="main_box_title_container">
                 <h1 class="main_box_title">Challenge your friends</h1>
             </div>
             {% for user in all_users_but_logged_one %}
-            <div id="challenge_friends_box_wrapper">
+            <div id="battle_friends_box_wrapper">
                 <div class="profile_box_container">
                     <div class="profile_picture_container">
                         <img src="{{ asset('uploads/profile_man.jpg') }}">
@@ -114,8 +120,8 @@
             <div id="buy_sell_stock_box_wrapper">
                 {{ form_start(buy_or_sell_stocks_form, {'attr' : {'id' : 'buy_or_sell_stocks_form'}}) }}
                     <div id="amount_and_currency">
-                        <div id="currency_symbol">$</div>
-                        <input type="number" name="stock_amount" id="stock_amount_input" value="0">
+                        <div id="currency_symbol">€</div>
+                        <input type="number" min="0" name="stock_amount" id="stock_amount_input" value="0">
                     </div>
                     <div id="buy_stock_container">
                         <div id="buy_stock_contextual_text">Buy</div> 
