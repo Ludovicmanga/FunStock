@@ -53,56 +53,64 @@ class AppFixtures extends Fixture
                 'symbol'=> 'AAPL',
                 'current_price' => 160,07,
                 'logo' => 'uploads/apple_logo.png',
-                'type' => 'company'
+                'type' => 'company',
+                'last 30 days evolution' => '+6'
             ],
             [
                 'name' => 'Bitcoin',
                 'symbol'=> 'BTC',
                 'current_price' => 31586.31,
                 'logo' => 'uploads/bitcoin_logo.png',
-                'type' => 'crypto'
+                'type' => 'crypto',
+                'last 30 days evolution' => '+5'
             ],
             [
                 'name' => 'Ethereum',
                 'symbol'=> 'ETH',
                 'current_price' => 2126.91,
                 'logo' => 'uploads/ethereum_logo.png',
-                'type' => 'crypto'
+                'type' => 'crypto',
+                'last 30 days evolution' => '-9'
             ],
             [
                 'name' => 'Litecoin',
                 'symbol'=> 'LIT',
                 'current_price' => 83.72,
                 'logo' => 'uploads/litecoin_logo.png',
-                'type' => 'crypto'
+                'type' => 'crypto',
+                'last 30 days evolution' => '+19'
             ],
             [
                 'name' => 'Microsoft',
                 'symbol'=> 'MSFT',
                 'current_price' => 280.27,
                 'logo' => 'uploads/microsoft_logo.png',
-                'type' => 'company'
+                'type' => 'company',
+                'last 30 days evolution' => '-3'
             ],
             [
                 'name' => 'Airbus',
-                'symbol'=> 'Air',
+                'symbol'=> 'AIR',
                 'current_price' => 107.22,
                 'logo' => 'uploads/airbus_logo.png',
-                'type' => 'company'
+                'type' => 'company',
+                'last 30 days evolution' => '+7'
             ],
             [
                 'name' => 'Palantir',
                 'symbol'=> 'PLTR',
                 'current_price' => 10.43,
                 'logo' => 'uploads/palantir_logo.png',
-                'type' => 'company'
+                'type' => 'company',
+                'last 30 days evolution' => '-11'
             ],
             [
                 'name' => 'TSMC',
                 'symbol'=> 'ETH',
                 'current_price' => 604,
                 'logo' => 'uploads/tsmc_logo.png',
-                'type' => 'company'
+                'type' => 'company',
+                'last 30 days evolution' => '+29'
             ],
         ];
 
@@ -113,6 +121,7 @@ class AppFixtures extends Fixture
                         ->setSymbol($stockArray['symbol'])
                         ->setLogo($stockArray['logo'])
                         ->setType($stockArray['type'])
+                        ->setLast30DaysEvolution($stockArray['last 30 days evolution'])
             ;
 
             $manager->persist($stockObject);

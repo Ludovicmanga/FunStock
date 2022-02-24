@@ -32,7 +32,6 @@ const openModal = function (e, modalStopClassClass, closeModalFunction) {
 }
 
 const closeModal = function (e, modalStopClass) {
-    console.log(modal)
     if (modal === null){ return };
     e.preventDefault();
     window.setTimeout(function() {
@@ -43,6 +42,7 @@ const closeModal = function (e, modalStopClass) {
     modal.setAttribute('aria-hidden', true);
     modal.removeAttribute('aria-modal');
     modal.removeEventListener('click', closeModal);
+    console.log(modalStopClass)
     modal.querySelector(modalStopClass).removeEventListener('click', stopPropagation);
 }
 
@@ -132,6 +132,23 @@ const declineBattleRequest = function(e) {
     }, 500);
 }
 
+const chooseStock = function(e, modalStopClass) {
+    e.preventDefault();
+    e.target.style="background:red;";
+    stockId = e.target.id.match(/^\d+/g)[0];
+    form = document.getElementById('battle_form');
+    stockInput = document.createElement('input')
+    stockInput.setAttribute('value', stockId);
+    document.querySelectorAll('.stock_input').forEach(input => { input.remove() }) ;
+    stockInput.setAttribute('class', 'stock_input');
+    stockInput.setAttribute('type', 'hidden');
+    form.append(stockInput);
+    window.setTimeout(function() {
+        closeChooseStockModal(e, modalStopClass);
+        e.target.removeAttribute('style');
+    }, 200);
+}
+
 // Modal boutons
 
 document.querySelectorAll('.battle_btn').forEach(a => {
@@ -161,6 +178,10 @@ document.querySelectorAll('.progress-done').forEach( progressBar => {
         progressBar.style.opacity = 1;
         progressBar.style.width = progressBar.getAttribute('data-done')+'%';
     }, 500)
+})
+
+document.querySelectorAll('.stock_card').forEach(a => {
+    a.addEventListener('click', function(e){ chooseStock(e, '.choose_stock_modal_stop') });
 })
 
 // Start of chart config
@@ -204,7 +225,6 @@ createWinsChart('wins_chart');
 //second chart
 
  const createStockValuationChart = function(id) {
-    console.log('hey')
     const stockValuationChart = new Chart(
         document.getElementById(id),
         {

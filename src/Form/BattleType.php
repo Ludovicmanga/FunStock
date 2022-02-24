@@ -19,7 +19,6 @@ class BattleType extends AbstractType
                     'The stock is going down' => 'down'
                 ]
             ])
-            ->add('stock')
             ->add('amount')
         ;
     }
