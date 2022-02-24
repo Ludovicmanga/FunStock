@@ -3,7 +3,7 @@
         {{ form_start(battle_form, {'attr' : {'id' : 'battle_form'}}) }}
             <div class="form" id="battleModal_step1">
                 <p>On which stock do you want to bet ?</p>
-                <a class="choose_stock_btn" href="#choose_stock_modal" id="{{ app.user.id }}_choose_stock_btn">
+                <a class="battle_form_choose_stock_btn" href="#choose_stock_modal" id="{{ app.user.id }}_choose_stock_btn">
                     <div class="not-clickable">Choose Stock</div>
                 </a>
                 <div class="btn_box">
@@ -20,7 +20,6 @@
                     <i type="button" id="battleModal_next2" class="fa-solid fa-circle-arrow-right battleModal_next_button"></i>
                 </div>
             </div>
-
             <div class="form" id="battleModal_step3">
                 <p>How much do you want to bet ?</p>
                 <div id="amount_and_currency">

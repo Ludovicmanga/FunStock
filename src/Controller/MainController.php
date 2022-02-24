@@ -69,13 +69,14 @@ class MainController extends AbstractController
         $buyOrSellStocksForm->handleRequest($request);
 
         if($buyOrSellStocksForm->isSubmitted() && $buyOrSellStocksForm->isValid()){
+            $stockAsset->setOwner($this->getUser())
+                       ->setStock($this->stockRepository->findOneById($request->request->get('stock')))
+            ;
 
             $amountToSpend = (int) filter_var($request->request->get('stock_amount'), FILTER_SANITIZE_NUMBER_INT);
-            $numberOfActionsToBuy = round($amountToSpend / $stockAsset->getStock()->getCurrentPrice(), 5);
-            
-            $stockAsset->setOwner($this->getUser())
-                       ->setQuantity($numberOfActionsToBuy)
-            ;
+            $numberOfActionsToBuy = $amountToSpend / $stockAsset->getStock()->getCurrentPrice();
+
+            $stockAsset->setQuantity($numberOfActionsToBuy);
 
             $this->entityManager->persist($stockAsset);
             $this->entityManager->flush();
@@ -85,8 +86,6 @@ class MainController extends AbstractController
         $pendingInboundBattleRequests = $this->battleService->findPendingInboundBattleRequestsByDefender($this->getUser());
         $pendingOutboundBattleRequests = $this->battleRepository->findPendingOutboundBattleRequestsByAttacker($this->getUser());
         $allBattles = $this->battleService->findAll();
-
-        
 
         return $this->render('main/index.html.twig', [
             'battle_form' => $battleForm->createView(),

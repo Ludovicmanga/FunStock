@@ -4,6 +4,7 @@ namespace App\Services;
 
 use DateTime;
 use App\Repository\UserRepository;
+use App\Repository\StockRepository;
 use App\Repository\BattleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -16,13 +17,14 @@ Class BattleService implements BattleServiceInterface
     public function __construct(
         EntityManagerInterface $entityManager,
         UserRepository $userRepository,
-        BattleRepository $battleRepository
+        BattleRepository $battleRepository,
+        StockRepository $stockRepository 
     )
     {
         $this->entityManager = $entityManager;
         $this->userRepository = $userRepository;
         $this->battleRepository = $battleRepository;
-        
+        $this->stockRepository = $stockRepository;
     }
 
     public function createBattle($battle, $request, $attacker)
@@ -30,6 +32,7 @@ Class BattleService implements BattleServiceInterface
         $battle->setBattleDate(new DateTime)
                 ->setAttacker($attacker)
                 ->setDefender($this->userRepository->findOneById($request->request->get('defender')))
+                ->setStock($this->stockRepository->findOneById($request->request->get('stock')))
                 ->setState('pending')
             ;
 
