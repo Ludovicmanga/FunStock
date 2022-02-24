@@ -2,11 +2,16 @@
     <div class="modal_wrapper choose_stock_modal_stop" aria-hidden="true" roles="dialog" aria-labelled-by="modal_title">
         {% for stock in all_stocks %}
             <div class="stock_card">
-                <div>{{ stock.companyName }}</div>
-                <div>{{ stock.symbol }}</div>
-                <div>{{ stock.currentPrice }}</div>
+                <div class="identity_container">
+                    <div class="stock_name">{{ stock.companyName }}</div>
+                    <div class="stock_symbol">{{ stock.symbol }}</div>
+                </div>
                 <div class="stock_img_container">
-                    <img src="{{ asset(stock.logo) }}">
+                    <img src="{{ stock.logo }}">
+                </div>
+                <div class="stock_information_container">
+                    <div class="stock_last_30_days_evolution">{{ stock.currentPrice }}</div>
+                    <div class="stock_price">{{ stock.last30DaysEvolution }} %</div>
                 </div>
             </div>
         {% endfor %}
