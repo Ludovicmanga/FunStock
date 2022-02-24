@@ -32,7 +32,10 @@ const openModal = function (e, modalStopClassClass, closeModalFunction) {
 }
 
 const closeModal = function (e, modalStopClass) {
-    if (modal === null){ return };
+    console.log(modal)
+
+    // Careful, it is a trick... It should not work . Correct function is  if (modal === null){ return };
+    if (modal === null){ modal = document.getElementById('battle_modal') };
     e.preventDefault();
     window.setTimeout(function() {
         if (modal === null){ return }
@@ -93,12 +96,17 @@ const closeViewBattleRequestsModal = function(e, modalStopClass) {
 
 const openChooseStockModal = function(e, modalStopClass, formId) {
     openModal(e, modalStopClass, function(e){ closeChooseStockModal(e, modalStopClass); });
-    modal.setAttribute('form_id', formId);
+    modal.setAttribute('form_id', formId)
 }
 
 const closeChooseStockModal = function(e, modalStopClass) {
     closeModal(e, modalStopClass);
 }
+/* 
+const closeFuckingModal = function()
+{
+    document.getElementById('battle_modal').style = "display:none;"
+} */
 
 // End of modals
 
@@ -137,7 +145,6 @@ const addStockToForm = function(e, modalStopClass) {
     e.target.style="background:red;";
     stockId = e.target.id.match(/^\d+/g)[0];
     formId = document.getElementById('choose_stock_modal').getAttribute('form_id');
-    console.log(formId)
     form = document.getElementById(formId);
     stockInput = document.createElement('input')
     stockInput.setAttribute('value', stockId);
@@ -169,11 +176,6 @@ document.querySelector('.battle_form_choose_stock_btn').addEventListener('click'
 document.querySelector('.buy_or_sell_stocks_form_choose_stock_btn').addEventListener('click', function(e){ 
     openChooseStockModal(e, '.choose_stock_modal_stop', 'buy_or_sell_stocks_form');
 });
-
-
-document.querySelectorAll('#buy_or_sell_stocks_form .choose_stock_btn').forEach(a => {
-    a.addEventListener('click', function(e){ openChooseStockModal(e, '.choose_stock_modal_stop', 'buy_or_sell_stocks_form'); });
-})
 
 // End of Modal boutons
 
