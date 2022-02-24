@@ -22,10 +22,15 @@
 
     <div class="main_boxes_row">
         <div class="main_box">
-            <h1 class="main_box_title">Your results (last 30 days)</h1>
+            <div class="main_box_title_container">
+                <h1 class="main_box_title">Your results (last 30 days)</h1>
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
         </div>
         <div class="main_box">
-            <h1 class="main_box_title">Challenge your friends</h1>
+            <div class="main_box_title_container">
+                <h1 class="main_box_title">Challenge your friends</h1>
+            </div>
             {% for user in all_users_but_logged_one %}
             <div id="challenge_friends_box_wrapper">
                 <div class="profile_box_container">
@@ -35,19 +40,18 @@
                     <h3>{{ user.firstName }}</h3>
                 </div>
                 <div class="stock_valuation_box_container">
-                    <h3>Stock Valuation</h3>
-                    <div>
-                        <div>+ 7%</div>
-                        <i class="fa-solid fa-rocket"></i>
+                    <h3>Victory rate</h3>
+                    <div class="progress_bar">
+                        <div class="progress-done" data-done={% if (user.numberOfLostBattles + user.numberOfWinnedBattles) != 0 %}{{ user.numberOfWinnedBattles / (user.numberOfLostBattles + user.numberOfWinnedBattles)*100 }}{% else %}"100"{% endif %}></div>
                     </div>
                 </div>
-                <div class="last_fights_box">
+                <div class="last_battles_box">
                     <div>{{ user.numberOfWinnedBattles }} wins</div>
                     <i class="fa-solid fa-trophy"></i>
                     <div>{{ user.numberOfLostBattles }} losses</div>
                     <i class="fa-solid fa-skull-crossbones"></i>
                 </div>
-                <a class="fight_btn" href="#fight_modal" id="{{ user.id }}_fight_btn">
+                <a class="battle_btn" href="#battle_modal" id="{{ user.id }}_battle_btn">
                     <div class="not-clickable">Fight {{ user.firstName }}</div>
                     <i class="fa-solid fa-bomb not-clickable"></i>
                 </a>
@@ -57,7 +61,9 @@
     </div>
     <div class="main_boxes_row">
         <div class="main_box">
-            <h1 class="main_box_title">My battle requests</h1>
+            <div class="main_box_title_container">
+                <h1 class="main_box_title">My battle requests</h1>
+            </div>
             {% if pending_inbound_battle_requests %}
                 {% for pending_inbound_battle_request in pending_inbound_battle_requests %}
                     <div class="battle_request_box_wrapper" id="{{ pending_inbound_battle_request.id }}_battle_request_box_wrapper">
@@ -102,16 +108,26 @@
             {% endif %}
         </div>
         <div class="main_box">
-            <h1 class="main_box_title">Buy stocks</h1>
+            <div class="main_box_title_container">
+                <h1 class="main_box_title">Buy stocks</h1>
+            </div>
             <div id="buy_sell_stock_box_wrapper">
                 {{ form_start(buy_or_sell_stocks_form, {'attr' : {'id' : 'buy_or_sell_stocks_form'}}) }}
-                    <input type="number" name="stock_amount">
-                    {{ form_row(buy_or_sell_stocks_form.stock) }}
-                    <button id="buy_sell_stock_submit_btn">Buy stocks</button>
+                    <div id="amount_and_currency">
+                        <div id="currency_symbol">$</div>
+                        <input type="number" name="stock_amount" id="stock_amount_input" value="0">
+                    </div>
+                    <div id="buy_stock_container">
+                        <div id="buy_stock_contextual_text">Buy</div> 
+                        {{ form_row(buy_or_sell_stocks_form.stock, {'label': false, 'id': 'stock_input'}) }}
+                    </div>
+                    <div id="submit_btn_container">
+                        <button id="submit_btn" type="submit">Confirm</button>
+                    </div>
                 {{ form_end(buy_or_sell_stocks_form) }}
             </div>
         </div>
     </div>
-    {% include 'modals/fightModal.html.twig' %}
+    {% include 'modals/battleModal.html.twig' %}
     {% include 'modals/viewBattleRequestsModal.html.twig' %}
 {% endblock %}

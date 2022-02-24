@@ -67,8 +67,6 @@ class MainController extends AbstractController
         $buyOrSellStocksForm = $this->createForm(BuyOrSellStocksType::class, $stockAsset);
         $buyOrSellStocksForm->handleRequest($request);
 
-    
-
         if($buyOrSellStocksForm->isSubmitted() && $buyOrSellStocksForm->isValid()){
 
             $amountToSpend = (int) filter_var($request->request->get('stock_amount'), FILTER_SANITIZE_NUMBER_INT);
@@ -80,7 +78,6 @@ class MainController extends AbstractController
 
             $this->entityManager->persist($stockAsset);
             $this->entityManager->flush();
-
         }
 
         // We get the battle requests of the user
