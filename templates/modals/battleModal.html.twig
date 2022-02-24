@@ -1,32 +1,32 @@
-<div class="modal" id="fight_modal" style="display:none;">
-    <div class="modal_wrapper fight_modal_stop" aria-hidden="true" roles="dialog" aria-labelled-by="modal_title">
-        {{ form_start(battle_form, {'attr' : {'id' : 'fight_form'}}) }}
-            <div class="form" id="fightModal_step1">
+<div class="modal" id="battle_modal" style="display:none;">
+    <div class="modal_wrapper battle_modal_stop" aria-hidden="true" roles="dialog" aria-labelled-by="modal_title">
+        {{ form_start(battle_form, {'attr' : {'id' : 'battle_form'}}) }}
+            <div class="form" id="battleModal_step1">
                 <p>On which stock do you want to bet ?</p>
                 <div>Search...</div>
                 {{ form_label(battle_form.stock, 'Nom de l\'action') }}
-                {{ form_row(battle_form.stock) }}
+                {{ form_row(battle_form.stock, {'label': false, 'id': 'stock_input'}) }}
                 <div class="btn_box">
-                    <button type="button" id="fightModal_next1">Next</button>
+                    <button type="button" id="battleModal_next1">Next</button>
                 </div>
             </div>
-            <div class="form" id="fightModal_step2">
+            <div class="form" id="battleModal_step2">
                 <p>What is your predicition ?</p>
                 {{ form_label(battle_form.stockVariationDirectionPrediction, 'Prediction') }}
                 {{ form_row(battle_form.stockVariationDirectionPrediction) }}
 
                 <div class="btn_box">
-                    <button type="button" id="fightModal_back1">Back</button>
-                    <button type="button" id="fightModal_next2">Next</button>
+                    <button type="button" id="battleModal_back1">Back</button>
+                    <button type="button" id="battleModal_next2">Next</button>
                 </div>
             </div>
 
-            <div class="form" id="fightModal_step3">
+            <div class="form" id="battleModal_step3">
                 <p>How much do you want to bet ?</p>
                 {{ form_label(battle_form.stockVariationDirectionPrediction, 'Amount') }}
                 {{ form_row(battle_form.amount) }}
                 <div class="btn_box">
-                    <button type="button" id="fightModal_back2">Back</button>
+                    <button type="button" id="battleModal_back2">Back</button>
                 </div>
             </div>
         <button type="submit">Submit</button>

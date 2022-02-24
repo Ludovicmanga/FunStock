@@ -1,21 +1,21 @@
-document.getElementById('fightModal_next1').onclick = function() {
-    document.getElementById('fightModal_step1').style.left = "-450px";
-    document.getElementById('fightModal_step2').style.left = "40px";
+document.getElementById('battleModal_next1').onclick = function() {
+    document.getElementById('battleModal_step1').style.left = "-450px";
+    document.getElementById('battleModal_step2').style.left = "40px";
 }
 
-document.getElementById('fightModal_back1').onclick = function() {
-    document.getElementById('fightModal_step1').style.left = "40px";
-    document.getElementById('fightModal_step2').style.left = "450px";
+document.getElementById('battleModal_back1').onclick = function() {
+    document.getElementById('battleModal_step1').style.left = "40px";
+    document.getElementById('battleModal_step2').style.left = "450px";
 }
 
-document.getElementById('fightModal_next2').onclick = function() {
-    document.getElementById('fightModal_step2').style.left = "-450px";
-    document.getElementById('fightModal_step3').style.left = "40px";
+document.getElementById('battleModal_next2').onclick = function() {
+    document.getElementById('battleModal_step2').style.left = "-450px";
+    document.getElementById('battleModal_step3').style.left = "40px";
 }
 
-document.getElementById('fightModal_back2').onclick = function() {
-    document.getElementById('fightModal_step2').style.left = "40px";
-    document.getElementById('fightModal_step3').style.left = "450px";
+document.getElementById('battleModal_back2').onclick = function() {
+    document.getElementById('battleModal_step2').style.left = "40px";
+    document.getElementById('battleModal_step3').style.left = "450px";
 }
 
 /* We set up the opening and closing of modals */
@@ -49,26 +49,26 @@ const stopPropagation = function (e, modalStop) {
     e.stopPropagation();
 }
 
-const openFightModal = function (e, modalStop) {
+const openBattleModal = function (e, modalStop) {
     e.preventDefault()
-    fightForm = document.getElementById('fight_form');
+    battleForm = document.getElementById('battle_form');
     defenderInput = document.createElement('input');
     defenderInput.setAttribute('name', 'defender');
     defenderInput.setAttribute('type', 'hidden');
     defenderInput.setAttribute('value', e.target.id.match(/^\d+/g)[0]);
-    fightForm.append(defenderInput);
-    openModal(e, modalStop, function(e){ closeFightModal(e, modalStop); });
+    battleForm.append(defenderInput);
+    openModal(e, modalStop, function(e){ closeBattleModal(e, modalStop); });
 }
 
-const closeFightModal = function (e, modalStop) {
+const closeBattleModal = function (e, modalStop) {
     closeModal(e, modalStop);
-    document.getElementById("fight_form").reset();
+    document.getElementById("battle_form").reset();
     window.setTimeout(function() {
-        document.getElementById('fightModal_step1').style.left = "40px";
-        document.getElementById('fightModal_step2').style.left = "450px";
-        document.getElementById('fightModal_step3').style.left = "450px";
+        document.getElementById('battleModal_step1').style.left = "40px";
+        document.getElementById('battleModal_step2').style.left = "450px";
+        document.getElementById('battleModal_step3').style.left = "450px";
     }, 510);
-    document.getElementById("fight_form").querySelectorAll('input[name="defender"]').forEach(input => {
+    document.getElementById("battle_form").querySelectorAll('input[name="defender"]').forEach(input => {
         input.remove()
     })
 }
@@ -121,8 +121,8 @@ const declineBattleRequest = function(e) {
     }, 500);
 }
 
-document.querySelectorAll('.fight_btn').forEach(a => {
-    a.addEventListener('click', function(e){ openFightModal(e, '.fight_modal_stop'); });
+document.querySelectorAll('.battle_btn').forEach(a => {
+    a.addEventListener('click', function(e){ openBattleModal(e, '.battle_modal_stop'); });
 })
 
 document.querySelectorAll('.view_battle_request_btn').forEach(a => {
@@ -139,4 +139,11 @@ document.querySelectorAll('.decline_battle_request_btn').forEach(a => {
     a.addEventListener('click', function(e){
         declineBattleRequest(e) 
     });
+})
+
+document.querySelectorAll('.progress-done').forEach( progressBar => {
+    setTimeout( () => {
+        progressBar.style.opacity = 1;
+        progressBar.style.width = progressBar.getAttribute('data-done')+'%';
+    }, 500)
 })
