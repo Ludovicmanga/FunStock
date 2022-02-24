@@ -42,7 +42,6 @@ const closeModal = function (e, modalStopClass) {
     modal.setAttribute('aria-hidden', true);
     modal.removeAttribute('aria-modal');
     modal.removeEventListener('click', closeModal);
-    console.log(modalStopClass)
     modal.querySelector(modalStopClass).removeEventListener('click', stopPropagation);
 }
 
@@ -92,8 +91,9 @@ const closeViewBattleRequestsModal = function(e, modalStopClass) {
     closeModal(e, modalStopClass);
 }
 
-const openChooseStockModal = function(e, modalStopClass) {
+const openChooseStockModal = function(e, modalStopClass, formId) {
     openModal(e, modalStopClass, function(e){ closeChooseStockModal(e, modalStopClass); });
+    modal.setAttribute('form_id', formId);
 }
 
 const closeChooseStockModal = function(e, modalStopClass) {
@@ -132,15 +132,18 @@ const declineBattleRequest = function(e) {
     }, 500);
 }
 
-const chooseStock = function(e, modalStopClass) {
+const addStockToForm = function(e, modalStopClass) {
     e.preventDefault();
     e.target.style="background:red;";
     stockId = e.target.id.match(/^\d+/g)[0];
-    form = document.getElementById('battle_form');
+    formId = document.getElementById('choose_stock_modal').getAttribute('form_id');
+    console.log(formId)
+    form = document.getElementById(formId);
     stockInput = document.createElement('input')
     stockInput.setAttribute('value', stockId);
     document.querySelectorAll('.stock_input').forEach(input => { input.remove() }) ;
     stockInput.setAttribute('class', 'stock_input');
+    stockInput.setAttribute('name', 'stock');
     stockInput.setAttribute('type', 'hidden');
     form.append(stockInput);
     window.setTimeout(function() {
@@ -149,7 +152,7 @@ const chooseStock = function(e, modalStopClass) {
     }, 200);
 }
 
-// Modal boutons
+// Modal buttons
 
 document.querySelectorAll('.battle_btn').forEach(a => {
     a.addEventListener('click', function(e){ openBattleModal(e, '.battle_modal_stop'); });
@@ -159,8 +162,17 @@ document.querySelectorAll('.view_battle_request_btn').forEach(a => {
     a.addEventListener('click', function(e){ openViewBattleRequestsModal(e, '.view_battle_request_modal_stop'); });
 })
 
-document.querySelectorAll('.choose_stock_btn').forEach(a => {
-    a.addEventListener('click', function(e){ openChooseStockModal(e, '.choose_stock_modal_stop'); });
+document.querySelector('.battle_form_choose_stock_btn').addEventListener('click', function(e){ 
+    openChooseStockModal(e, '.choose_stock_modal_stop', 'battle_form');
+});
+
+document.querySelector('.buy_or_sell_stocks_form_choose_stock_btn').addEventListener('click', function(e){ 
+    openChooseStockModal(e, '.choose_stock_modal_stop', 'buy_or_sell_stocks_form');
+});
+
+
+document.querySelectorAll('#buy_or_sell_stocks_form .choose_stock_btn').forEach(a => {
+    a.addEventListener('click', function(e){ openChooseStockModal(e, '.choose_stock_modal_stop', 'buy_or_sell_stocks_form'); });
 })
 
 // End of Modal boutons
@@ -181,10 +193,10 @@ document.querySelectorAll('.progress-done').forEach( progressBar => {
 })
 
 document.querySelectorAll('.stock_card').forEach(a => {
-    a.addEventListener('click', function(e){ chooseStock(e, '.choose_stock_modal_stop') });
+    a.addEventListener('click', function(e){ addStockToForm(e, '.choose_stock_modal_stop') });
 })
 
-// Start of chart config
+// Chart config
 
 // first chart
 
@@ -252,7 +264,7 @@ createWinsChart('wins_chart');
 
   //buttons actions for charts
   
-  document.getElementById('wins_stats_button').addEventListener(
+   document.getElementById('wins_stats_button').addEventListener(
        'click',
         function(e){
         openChart(e, 'wins_chart', function(e){ createWinsChart('wins_chart') }) 
