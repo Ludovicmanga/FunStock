@@ -52,56 +52,56 @@ class AppFixtures extends Fixture
                 'name' => 'Apple',
                 'symbol'=> 'AAPL',
                 'current_price' => 160,07,
-                'logo' => 'uploads/logo/apple_logo.png',
+                'logo' => 'uploads/apple_logo.png',
                 'type' => 'company'
             ],
             [
                 'name' => 'Bitcoin',
                 'symbol'=> 'BTC',
                 'current_price' => 31586.31,
-                'logo' => 'uploads/logo/bitcoin_logo.png',
+                'logo' => 'uploads/bitcoin_logo.png',
                 'type' => 'crypto'
             ],
             [
                 'name' => 'Ethereum',
                 'symbol'=> 'ETH',
                 'current_price' => 2126.91,
-                'logo' => 'uploads/logo/ethereum_logo.png',
+                'logo' => 'uploads/ethereum_logo.png',
                 'type' => 'crypto'
             ],
             [
                 'name' => 'Litecoin',
                 'symbol'=> 'LIT',
                 'current_price' => 83.72,
-                'logo' => 'uploads/logo/litecoin_logo.png',
+                'logo' => 'uploads/litecoin_logo.png',
                 'type' => 'crypto'
             ],
             [
                 'name' => 'Microsoft',
                 'symbol'=> 'MSFT',
                 'current_price' => 280.27,
-                'logo' => 'uploads/logo/microsoft_logo.png',
+                'logo' => 'uploads/microsoft_logo.png',
                 'type' => 'company'
             ],
             [
                 'name' => 'Airbus',
                 'symbol'=> 'Air',
                 'current_price' => 107.22,
-                'logo' => 'uploads/logo/airbus_logo.png',
+                'logo' => 'uploads/airbus_logo.png',
                 'type' => 'company'
             ],
             [
                 'name' => 'Palantir',
                 'symbol'=> 'PLTR',
                 'current_price' => 10.43,
-                'logo' => 'uploads/logo/palantir_logo.png',
+                'logo' => 'uploads/palantir_logo.png',
                 'type' => 'company'
             ],
             [
                 'name' => 'TSMC',
                 'symbol'=> 'ETH',
                 'current_price' => 604,
-                'logo' => 'uploads/logo/tsmc_logo.png',
+                'logo' => 'uploads/tsmc_logo.png',
                 'type' => 'company'
             ],
         ];

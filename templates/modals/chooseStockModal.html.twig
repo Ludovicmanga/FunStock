@@ -6,7 +6,7 @@
                 <div>{{ stock.symbol }}</div>
                 <div>{{ stock.currentPrice }}</div>
                 <div class="stock_img_container">
-                    <img src="{{ stock.logo }}">
+                    <img src="{{ asset(stock.logo) }}">
                 </div>
             </div>
         {% endfor %}
