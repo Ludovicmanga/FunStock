@@ -44,9 +44,10 @@ class MainController extends AbstractController
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $allStocks = $this->stockRepository->findAll();
-        $allUsersButLoggedOne = $this->userService->findAllUsersButLoggedOne($this->getUser());
+        $allUsers = $this->userService->findAll();
+        $allUsersButLoggedOne = $this->userService->findAllButLoggedOne($this->getUser());
 
-        foreach($allUsersButLoggedOne as $user){
+        foreach($allUsers as $user){
             $user->setNumberOfWinnedBattles(count($user->getWinnedBattles()))
                  ->setNumberOfLostBattles(count($user->getLostBattles()))
             ;
@@ -84,6 +85,8 @@ class MainController extends AbstractController
         $pendingInboundBattleRequests = $this->battleService->findPendingInboundBattleRequestsByDefender($this->getUser());
         $pendingOutboundBattleRequests = $this->battleRepository->findPendingOutboundBattleRequestsByAttacker($this->getUser());
         $allBattles = $this->battleService->findAll();
+
+        
 
         return $this->render('main/index.html.twig', [
             'battle_form' => $battleForm->createView(),

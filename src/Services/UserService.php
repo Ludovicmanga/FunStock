@@ -19,8 +19,13 @@ Class UserService implements UserServiceInterface
         $this->userRepository = $userRepository;
     }
 
-    public function findAllUsersButLoggedOne($loggedUser)
+    public function findAllButLoggedOne($loggedUser)
     {
-        return $this->userRepository->findAllUsersButLoggedOne($loggedUser);
+        return $this->userRepository->findAllButLoggedOne($loggedUser);
+    }
+
+    public function findAll()
+    {
+        return $this->userRepository->findAll();
     }
 }

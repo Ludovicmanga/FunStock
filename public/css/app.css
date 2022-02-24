@@ -49,14 +49,52 @@ a {
 
 .main_box_title_container {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .main_box_title {
-    font-size: 30px;
+    font-size: 20px;
 }
 
-#challenge_friends_box_wrapper {
+/* Stats box */
+
+#stats_buttons_container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.stats_button {
+    padding: 10px;
+    border-radius: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+#wins_stats_button {
+    background: #a6d9b4;
+}
+
+#wins_stats_button:hover {
+    background: #7affd3;
+}
+
+#stock_valuation_stats_button {
+    background: #209fd8;
+}
+
+#stock_valuation_stats_button:hover {
+    background: #85ffff;
+}
+
+.stats_chart {
+    width: 400px;
+    height: 400px;
+}
+
+/* Battle box */
+
+#battle_friends_box_wrapper {
     display: flex;
     justify-content: space-between;
     margin-bottom: 40px;
@@ -161,18 +199,23 @@ a {
 
 #buy_or_sell_stocks_form #amount_and_currency {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
-#buy_or_sell_stocks_form #stock_amount_input,
-#buy_or_sell_stocks_form #currency_symbol
+#buy_or_sell_stocks_form #currency_symbol {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+}
+
+#buy_or_sell_stocks_form #stock_amount_input
 {
     font-size: 50px;
 }
 
 #buy_or_sell_stocks_form #stock_amount_input {
     border: none;
-    width: 80%;
+    width: 25%;
     text-align: center;
 }
 

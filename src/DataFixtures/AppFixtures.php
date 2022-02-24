@@ -47,15 +47,72 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-        $encodedStockListFromAPI = file_get_contents('https://financialmodelingprep.com/api/v3/stock/list?apikey=8a6cb36615e4103bc91599f35b90884e');
+        $stockArrayList = [
+            [
+                'name' => 'Apple',
+                'symbol'=> 'AAPL',
+                'current_price' => 160,07,
+                'logo' => 'uploads/logo/apple_logo.png',
+                'type' => 'company'
+            ],
+            [
+                'name' => 'Bitcoin',
+                'symbol'=> 'BTC',
+                'current_price' => 31586.31,
+                'logo' => 'uploads/logo/bitcoin_logo.png',
+                'type' => 'crypto'
+            ],
+            [
+                'name' => 'Ethereum',
+                'symbol'=> 'ETH',
+                'current_price' => 2126.91,
+                'logo' => 'uploads/logo/ethereum_logo.png',
+                'type' => 'crypto'
+            ],
+            [
+                'name' => 'Litecoin',
+                'symbol'=> 'LIT',
+                'current_price' => 83.72,
+                'logo' => 'uploads/logo/litecoin_logo.png',
+                'type' => 'crypto'
+            ],
+            [
+                'name' => 'Microsoft',
+                'symbol'=> 'MSFT',
+                'current_price' => 280.27,
+                'logo' => 'uploads/logo/microsoft_logo.png',
+                'type' => 'company'
+            ],
+            [
+                'name' => 'Airbus',
+                'symbol'=> 'Air',
+                'current_price' => 107.22,
+                'logo' => 'uploads/logo/airbus_logo.png',
+                'type' => 'company'
+            ],
+            [
+                'name' => 'Palantir',
+                'symbol'=> 'PLTR',
+                'current_price' => 10.43,
+                'logo' => 'uploads/logo/palantir_logo.png',
+                'type' => 'company'
+            ],
+            [
+                'name' => 'TSMC',
+                'symbol'=> 'ETH',
+                'current_price' => 604,
+                'logo' => 'uploads/logo/tsmc_logo.png',
+                'type' => 'company'
+            ],
+        ];
 
-        $decodedStockList = json_decode($encodedStockListFromAPI,true);
-
-        foreach($decodedStockList as $stockFromApi){
+        foreach($stockArrayList as $stockArray){
             $stockObject = new Stock;
-            $stockObject->setCompanyName($stockFromApi['name'])
-                        ->setCurrentPrice($stockFromApi['price'])
-                        ->setSymbol($stockFromApi['symbol'])
+            $stockObject->setCompanyName($stockArray['name'])
+                        ->setCurrentPrice($stockArray['current_price'])
+                        ->setSymbol($stockArray['symbol'])
+                        ->setLogo($stockArray['logo'])
+                        ->setType($stockArray['type'])
             ;
 
             $manager->persist($stockObject);
