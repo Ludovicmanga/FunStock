@@ -39,6 +39,9 @@ class Stock
     #[ORM\Column(type: 'string', length: 255)]
     private $type;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $last30DaysEvolution;
+
     public function __construct()
     {
         $this->stockTransactions = new ArrayCollection();
@@ -201,6 +204,18 @@ class Stock
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getLast30DaysEvolution(): ?string
+    {
+        return $this->last30DaysEvolution;
+    }
+
+    public function setLast30DaysEvolution(string $last30DaysEvolution): self
+    {
+        $this->last30DaysEvolution = $last30DaysEvolution;
 
         return $this;
     }

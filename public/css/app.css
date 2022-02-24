@@ -288,7 +288,11 @@ a {
     background: #fff;
     border-radius: 5px;
     position: relative;
-    overflow: hidden;
+    overflow: scroll;
+}
+
+.modal_wrapper::-webkit-scrollbar {
+    display: none;
 }
 
 .modal_wrapper .form {
@@ -355,8 +359,8 @@ a {
     border-radius: 15px;
     margin: 10px;
     padding: 15px;
-    height: 200px;
-    width: 180px;
+    height: 210px;
+    width: 210px;
     background-color: blue;
     cursor: pointer;
 }
@@ -406,12 +410,14 @@ a {
     padding: 10px;
     background: #e280fc;
     border-radius: 10px;
+    font-size: 15px;
 }
 
 #choose_stock_modal .stock_last_30_days_evolution {
     padding: 10px;
     background: #c5e5b9;
     border-radius: 10px;
+    font-size: 15px;
 }
 
 #choose_stock_modal .stock_img_container {
