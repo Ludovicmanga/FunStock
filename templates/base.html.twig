@@ -20,10 +20,10 @@
     </body>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <script>
-        const acceptBattleRequestUrl = "{{ path('battle_accept_request', {'battle': 'battle_id'}) }}";
-        const declineBattleRequestUrl = "{{ path('battle_decline_request', {'battle': 'battle_id'}) }}";
-        const loggedUserNumberOfWinnedBattles = "{{ app.user.numberOfWinnedBattles }}";
-        const loggedUserNumberOfLostBattles = "{{ app.user.numberOfLostBattles }}";
+        var acceptBattleRequestUrl = "{{ path('battle_accept_request', {'battle': 'battle_id'}) }}";
+        var declineBattleRequestUrl = "{{ path('battle_decline_request', {'battle': 'battle_id'}) }}";
+        var loggedUserNumberOfWinnedBattles = "{{ app.user.numberOfWinnedBattles }}";
+        var loggedUserNumberOfLostBattles = "{{ app.user.numberOfLostBattles }}";
     </script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 </html>

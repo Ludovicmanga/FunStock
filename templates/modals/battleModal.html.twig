@@ -3,11 +3,12 @@
         {{ form_start(battle_form, {'attr' : {'id' : 'battle_form'}}) }}
             <div class="form" id="battleModal_step1">
                 <p>On which stock do you want to bet ?</p>
-                <div>Search...</div>
-                {{ form_label(battle_form.stock, 'Nom de l\'action') }}
                 {{ form_row(battle_form.stock, {'label': false, 'id': 'stock_input'}) }}
+                <a class="choose_stock_btn" href="#choose_stock_modal" id="{{ app.user.id }}_choose_stock_btn">
+                    <div class="not-clickable">Choose Stock</div>
+                </a>
                 <div class="btn_box">
-                    <button type="button" id="battleModal_next1">Next</button>
+                    <i type="button" id="battleModal_next1" class="fa-solid fa-circle-arrow-right battleModal_next_button"></i>
                 </div>
             </div>
             <div class="form" id="battleModal_step2">
@@ -16,17 +17,19 @@
                 {{ form_row(battle_form.stockVariationDirectionPrediction) }}
 
                 <div class="btn_box">
-                    <button type="button" id="battleModal_back1">Back</button>
-                    <button type="button" id="battleModal_next2">Next</button>
+                    <i type="button" id="battleModal_back1" class="fa-solid fa-circle-arrow-left battleModal_back_button"></i>
+                    <i type="button" id="battleModal_next2" class="fa-solid fa-circle-arrow-right battleModal_next_button"></i>
                 </div>
             </div>
 
             <div class="form" id="battleModal_step3">
                 <p>How much do you want to bet ?</p>
-                {{ form_label(battle_form.stockVariationDirectionPrediction, 'Amount') }}
-                {{ form_row(battle_form.amount) }}
+                <div id="amount_and_currency">
+                    {{ form_row(battle_form.amount, {'label': false, 'id': 'battle_amount_input', 'attr' : {'placeholder' : 'Ex: 50'}}) }} 
+                    <div id="currency_symbol">€</div>
+                </div>
                 <div class="btn_box">
-                    <button type="button" id="battleModal_back2">Back</button>
+                    <i type="button" id="battleModal_back2" class="fa-solid fa-circle-arrow-left battleModal_back_button"></i>
                 </div>
             </div>
         <button type="submit">Submit</button>
