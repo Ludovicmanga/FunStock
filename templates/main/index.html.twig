@@ -124,7 +124,10 @@
                         <input type="number" min="0" name="stock_amount" id="stock_amount_input" value="0">
                     </div>
                     <div id="buy_stock_container">
-                        <div id="buy_stock_contextual_text">Buy</div> 
+                        <a class="choose_stock_btn" href="#choose_stock_modal" id="{{ app.user.id }}_choose_stock_btn">
+                            <div class="not-clickable">Choose Stock</div>
+                        </a>
+                        <div id="buy_stock_contextual_text">Buy</div>
                         {{ form_row(buy_or_sell_stocks_form.stock, {'label': false, 'id': 'stock_input'}) }}
                     </div>
                     <div id="submit_btn_container">
@@ -136,4 +139,5 @@
     </div>
     {% include 'modals/battleModal.html.twig' %}
     {% include 'modals/viewBattleRequestsModal.html.twig' %}
+    {% include 'modals/chooseStockModal.html.twig' %}
 {% endblock %}

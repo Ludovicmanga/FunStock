@@ -18,9 +18,9 @@ document.getElementById('battleModal_back2').onclick = function() {
     document.getElementById('battleModal_step3').style.left = "450px";
 }
 
-/* We set up the opening and closing of modals */
+// Modals
 
-const openModal = function (e, modalStopClass, closeModalFunction) {
+const openModal = function (e, modalStopClassClass, closeModalFunction) {
     e.preventDefault();
     target = document.querySelector(e.target.getAttribute('href'));
     target.style.display = null;
@@ -28,10 +28,11 @@ const openModal = function (e, modalStopClass, closeModalFunction) {
     target.setAttribute('aria-modal', true);
     modal = target;
     modal.addEventListener('click', closeModalFunction);
-    modal.querySelector(modalStopClass).addEventListener('click', stopPropagation);
+    modal.querySelector(modalStopClassClass).addEventListener('click', stopPropagation);
 }
 
-const closeModal = function (e, modalStop) {
+const closeModal = function (e, modalStopClass) {
+    console.log(modal)
     if (modal === null){ return };
     e.preventDefault();
     window.setTimeout(function() {
@@ -42,14 +43,14 @@ const closeModal = function (e, modalStop) {
     modal.setAttribute('aria-hidden', true);
     modal.removeAttribute('aria-modal');
     modal.removeEventListener('click', closeModal);
-    modal.querySelector(modalStop).removeEventListener('click', stopPropagation);
+    modal.querySelector(modalStopClass).removeEventListener('click', stopPropagation);
 }
 
-const stopPropagation = function (e, modalStop) {
+const stopPropagation = function (e, modalStopClass) {
     e.stopPropagation();
 }
 
-const openBattleModal = function (e, modalStop) {
+const openBattleModal = function (e, modalStopClass) {
     e.preventDefault()
     battleForm = document.getElementById('battle_form');
     defenderInput = document.createElement('input');
@@ -57,11 +58,11 @@ const openBattleModal = function (e, modalStop) {
     defenderInput.setAttribute('type', 'hidden');
     defenderInput.setAttribute('value', e.target.id.match(/^\d+/g)[0]);
     battleForm.append(defenderInput);
-    openModal(e, modalStop, function(e){ closeBattleModal(e, modalStop); });
+    openModal(e, modalStopClass, function(e){ closeBattleModal(e, modalStopClass); });
 }
 
-const closeBattleModal = function (e, modalStop) {
-    closeModal(e, modalStop);
+const closeBattleModal = function (e, modalStopClass) {
+    closeModal(e, modalStopClass);
     document.getElementById("battle_form").reset();
     window.setTimeout(function() {
         document.getElementById('battleModal_step1').style.left = "40px";
@@ -73,11 +74,7 @@ const closeBattleModal = function (e, modalStop) {
     })
 }
 
-const closeViewBattleRequestsModal = function(e, modalStop) {
-    closeModal(e, modalStop);
-}
-
-const openViewBattleRequestsModal = function (e, modalStop) {
+const openViewBattleRequestsModal = function (e, modalStopClass) {
     id = e.target.id.match(/^\d+/g)[0]
     battleAmount = document.getElementById(id+'_battle_preview_stock');
     battleStock = document.getElementById(id+'_battle_preview_amount');
@@ -88,8 +85,22 @@ const openViewBattleRequestsModal = function (e, modalStop) {
         battleStock,
         battleVariationDirectionPrediction
     )
-    openModal(e, modalStop, function(e){ closeViewBattleRequestsModal(e, modalStop); });
+    openModal(e, modalStopClass, function(e){ closeViewBattleRequestsModal(e, modalStopClass); });
 }
+
+const closeViewBattleRequestsModal = function(e, modalStopClass) {
+    closeModal(e, modalStopClass);
+}
+
+const openChooseStockModal = function(e, modalStopClass) {
+    openModal(e, modalStopClass, function(e){ closeChooseStockModal(e, modalStopClass); });
+}
+
+const closeChooseStockModal = function(e, modalStopClass) {
+    closeModal(e, modalStopClass);
+}
+
+// End of modals
 
 const acceptBattleRequest = function(e) {
     e.preventDefault();
@@ -121,6 +132,8 @@ const declineBattleRequest = function(e) {
     }, 500);
 }
 
+// Modal boutons
+
 document.querySelectorAll('.battle_btn').forEach(a => {
     a.addEventListener('click', function(e){ openBattleModal(e, '.battle_modal_stop'); });
 })
@@ -129,16 +142,18 @@ document.querySelectorAll('.view_battle_request_btn').forEach(a => {
     a.addEventListener('click', function(e){ openViewBattleRequestsModal(e, '.view_battle_request_modal_stop'); });
 })
 
+document.querySelectorAll('.choose_stock_btn').forEach(a => {
+    a.addEventListener('click', function(e){ openChooseStockModal(e, '.choose_stock_modal_stop'); });
+})
+
+// End of Modal boutons
+
 document.querySelectorAll('.accept_battle_request_btn').forEach(a => {
-    a.addEventListener('click', function(e){ 
-        acceptBattleRequest(e) 
-    });
+    a.addEventListener('click', function(e){ acceptBattleRequest(e) });
 })
 
 document.querySelectorAll('.decline_battle_request_btn').forEach(a => {
-    a.addEventListener('click', function(e){
-        declineBattleRequest(e) 
-    });
+    a.addEventListener('click', function(e){ declineBattleRequest(e) });
 })
 
 document.querySelectorAll('.progress-done').forEach( progressBar => {
