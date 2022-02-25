@@ -72,12 +72,9 @@ class MainController extends AbstractController
             $stockAsset->setOwner($this->getUser())
                        ->setStock($this->stockRepository->findOneById($request->request->get('stock')))
             ;
-
             $amountToSpend = (int) filter_var($request->request->get('stock_amount'), FILTER_SANITIZE_NUMBER_INT);
             $numberOfActionsToBuy = $amountToSpend / $stockAsset->getStock()->getCurrentPrice();
-
             $stockAsset->setQuantity($numberOfActionsToBuy);
-
             $this->entityManager->persist($stockAsset);
             $this->entityManager->flush();
         }
