@@ -8,14 +8,14 @@
     
     {% for battle in all_battles %}
         <div style="display:none;">
-            <div id="{{ battle.id }}_battle_preview_amount">
-                {{ battle.amount }}
+            <div battle_preview_amount id="{{ battle.id }}_battle_preview_amount">
+                <span style="font-weight: bold;">Amount of the fight :</span> {{ battle.amount }} €
             </div>
             <div id="{{ battle.id }}_battle_preview_stock">
-                {{ battle.stock }}
+                <span style="font-weight: bold;">Stock :</span> {{ battle.stock }}
             </div>
             <div id="{{ battle.id }}_battle_preview_variation_direction_prediction">
-                {{ battle.stockVariationDirectionPrediction }}
+                <span style="font-weight: bold;">Prediction :</span> {{ battle.stockVariationDirectionPrediction }}
             </div>
         </div>
     {% endfor %}
@@ -41,7 +41,7 @@
             <div id="battle_friends_box_wrapper">
                 <div class="profile_box_container">
                     <div class="profile_picture_container">
-                        <img src="{{ asset('uploads/profile_man.jpg') }}">
+                        <img src="{{ asset(user.picture) }}">
                     </div>
                     <h3>{{ user.firstName }}</h3>
                 </div>
@@ -56,12 +56,10 @@
                         <div>{{ user.numberOfWinnedBattles }} wins</div>
                         <i class="fa-solid fa-trophy"></i>
                     </div>
-                    
                     <div class="battle_stats_box" id="lost_battles_box">
-                        <div>{{ user.numberOfLostBattles }} losses</div>
+                        <div>{{ user.numberOfLostBattles }} defeats</div>
                         <i class="fa-solid fa-skull-crossbones"></i>
                     </div>
-                    
                 </div>
                 <div class="battle_btn_container">
                     <a class="battle_btn" href="#battle_modal" id="{{ user.id }}_battle_btn">
@@ -83,42 +81,25 @@
                     <div class="battle_request_box_wrapper" id="{{ pending_inbound_battle_request.id }}_battle_request_box_wrapper">
                         <div class="profile_box_container">
                             <div class="profile_picture_container">
-                                <img src="{{ asset('uploads/profile_man.jpg') }}">
+                                <img src="{{ asset(pending_inbound_battle_request.attacker.picture) }}">
                             </div>
                             <h3>{{ pending_inbound_battle_request.attacker.firstName }}</h3>
                         </div>
-                        <a href="#view_battle_request_modal" class="view_battle_request_btn" id="{{ pending_inbound_battle_request.id }}_view_battle_request_btn">
+                        <a href="#view_battle_request_modal" class="view_battle_request_btn battle_request_btn" id="{{ pending_inbound_battle_request.id }}_view_battle_request_btn">
                             <div class="not-clickable">View the challenge</div>
                         </a>
-                        <a href="#" class="accept_battle_request_btn" id="{{ pending_inbound_battle_request.id }}_accept_battle_request_btn">
+                        <a href="#" class="accept_battle_request_btn battle_request_btn" id="{{ pending_inbound_battle_request.id }}_accept_battle_request_btn">
                             <span class="not-clickable">Accept</span>
                             <i class="fa-solid fa-check not-clickable"></i>
                         </a>
-                        <a href="#" class="decline_battle_request_btn" id="{{ pending_inbound_battle_request.id }}_decline_battle_request_btn">
+                        <a href="#" class="decline_battle_request_btn battle_request_btn" id="{{ pending_inbound_battle_request.id }}_decline_battle_request_btn">
                             <span class="not-clickable">Decline</span>
                             <i class="fa-solid fa-check not-clickable"></i>
                         </a>
                     </div>
                 {% endfor %}
-            {% endif %}
-            {% if pending_outbound_battle_requests %}
-                {% for pending_outbound_battle_request in pending_outbound_battle_requests %}
-                    <div class="battle_request_box_wrapper" id="{{ pending_outbound_battle_request.id }}_battle_request_box_wrapper">
-                        <div class="profile_box_container">
-                            <div class="profile_picture_container">
-                                <img src="{{ asset('uploads/profile_man.jpg') }}">
-                            </div>
-                            <h3>{{ pending_outbound_battle_request.defender.firstName }}</h3>
-                        </div>
-                        <a href="#view_battle_request_modal" class="view_battle_request_btn" id="{{ pending_outbound_battle_request.id }}_view_battle_request_btn">
-                            <div class="not-clickable">View the challenge</div>
-                        </a>
-                        <div class="pending_inbound_battle_request_disclaimer_container">
-                            <span>Pending...</span>
-                            <i class="fa-regular fa-clock"></i>
-                        </div>
-                    </div>
-                {% endfor %}
+            {% else %}
+            <div>You don't have battle requests. Don't wait for their move, <a href="#battle_friends_box_wrapper">attack your friends !</a> </div>
             {% endif %}
         </div>
         <div class="main_box">

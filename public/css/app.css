@@ -211,18 +211,26 @@ a {
     position: relative;
 }
 
+.battle_btn:hover {
+    background: rgba(0, 0, 0, 0.73);
+}
+
 .last_battles_box {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 30%;
+    width: 130px;
     font-size: 12px;
 }
 
 #winned_battles_box {
     background: rgba(15, 182, 0, 0.83);
     box-shadow: 0 0.1px 0.3px -5px rgba(15, 182, 0, 0.83), 0 0.3pc 1pc rgba(42, 227, 26, 0.72);
+}
+
+#winned_battles_box i {
+    color: #ffd208;
 }
 
 #lost_battles_box {
@@ -258,22 +266,40 @@ a {
 
 .battle_request_box_wrapper {
     display: flex;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.battle_request_btn {
+    margin-left: 5px;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    color: white;
 }
 
 .view_battle_request_btn {
     padding: 10px;
     border-radius: 15px;
     background: black;
-    color: white;
+}
+
+.view_battle_request_btn:hover {
+    background: rgba(0, 0, 0, 0.73);
 }
 
 .accept_battle_request_btn {
-    display: flex;
     justify-content: space-between;
     padding: 10px;
     border-radius: 15px;
     border: solid black 1px;
-    background: #8cff87;
+    background: rgba(15, 182, 0, 0.83);
+    box-shadow: 0 0.1px 0.3px -5px rgba(15, 182, 0, 0.83), 0 0.3pc 1pc rgba(42, 227, 26, 0.72);
+}
+
+.accept_battle_request_btn i,
+.decline_battle_request_btn i {
+    margin-left: 15px;
 }
 
 .accept_battle_request_btn:hover {
@@ -281,7 +307,6 @@ a {
 }
 
 .decline_battle_request_btn {
-    display: flex;
     justify-content: space-between;
     padding: 10px;
     border-radius: 15px;
@@ -312,6 +337,8 @@ a {
 #buy_or_sell_stocks_form #amount_and_currency {
     display: flex;
     justify-content: center;
+    margin-left: 35px;
+    margin-bottom: 15px;
 }
 
 #buy_or_sell_stocks_form #currency_symbol {
@@ -322,8 +349,8 @@ a {
 
 #buy_or_sell_stocks_form #stock_amount_input {
     border: none;
-    width: 25%;
-    text-align: center;
+    width: 30%;
+    text-align: left;
     font-size: 50px;
 }
 
@@ -406,7 +433,7 @@ a {
 
 .modal_wrapper .form {
     position: absolute;
-    top: 60px;
+    top: 30px;
     left: 40px;
     transition: 0.5s;
     width: 80%;
@@ -432,7 +459,7 @@ a {
 
 #battle_form #step_btn_box_1 {
     justify-content: flex-end;
-    margin-top: 100px;
+    margin-top: 159px;
 }
 
 #battle_form #step_btn_box_2 {
@@ -441,7 +468,7 @@ a {
 }
 
 #battle_form #step_btn_box_3 {
-    margin-top: 69px;
+    margin-top: 125px;
     justify-content: space-between;
 }
 
@@ -460,6 +487,7 @@ a {
     margin-left: 10px;
     margin-right: 10px;
     transition: 2s ease;
+    color: rgb(10, 76, 151);
 }
 
 .prediction_btn_container .title {
@@ -487,13 +515,14 @@ a {
     padding: 15px;
     border-radius: 15px;
     font-size: 30px;
-    width: 50%;
+    width: 100%;
 }
 
 #battle_form #currency_symbol {
     display: flex;
     align-items: center;
     font-size: 30px;
+    width: 30%;
 }
 
 #battleModal_step2 {
@@ -611,4 +640,11 @@ a {
 #choose_stock_modal .stock_img_container img {
     max-width: 100%;
     max-height: 100%;
+}
+
+/* view_battle_request_modal */
+
+#view_battle_request_modal_wrapper {
+    padding: 25px;
+    height: 117px;
 }

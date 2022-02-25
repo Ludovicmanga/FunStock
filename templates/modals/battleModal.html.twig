@@ -36,10 +36,9 @@
                 </div>
             </div>
             <div class="form" id="battleModal_step3">
-                <h2>How much do you want to bet ?</h2>
+                <h2>How much do you want to bet (in €) ?</h2>
                 <div id="amount_and_currency">
-                    {{ form_row(battle_form.amount, {'label': false, 'id': 'battle_amount_input', 'attr' : {'placeholder' : 'Ex: 50'}}) }} 
-                    <div id="currency_symbol">€</div>
+                    {{ form_row(battle_form.amount, {'label': false, 'id': 'battle_amount_input', 'attr' : {'placeholder' : 'Ex: 50 €'}}) }}
                 </div>
                 <div id="step_btn_box_3" class="step_btn_box">
                     <i type="button" id="battleModal_back2" class="fa-solid fa-circle-arrow-left battleModal_back_button"></i>

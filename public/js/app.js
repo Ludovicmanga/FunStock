@@ -87,8 +87,8 @@ const openViewBattleRequestsModal = function (e, modalStopClass) {
     battleRequestsModalWrapper = document.getElementById('view_battle_request_modal_wrapper');
     battleRequestsModalWrapper.append(
         battleAmount,
-        battleStock,
-        battleVariationDirectionPrediction
+        battleVariationDirectionPrediction,
+        battleStock
     )
     openModal(e, modalStopClass, function(e){ closeViewBattleRequestsModal(e, modalStopClass); });
 }

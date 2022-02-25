@@ -23,17 +23,20 @@ class AppFixtures extends Fixture
             [
                 'FirstName' => 'John',
                 'LastName' => 'John',
-                'Email'=> 'John@gmail.com'
+                'Email'=> 'John@gmail.com',
+                'Picture' => 'uploads/john.jpg'
             ],
             [
                 'FirstName' => 'Paul',
                 'LastName' => 'Newton',
-                'Email'=> 'Paul@gmail.com'
+                'Email'=> 'Paul@gmail.com',
+                'Picture' => 'uploads/paul.jpg'
             ],
             [
                 'FirstName' => 'Georges',
                 'LastName' => 'Smith',
-                'Email'=> 'Georges@gmail.com'
+                'Email'=> 'Georges@gmail.com',
+                'Picture' => 'uploads/georges.jpg'
             ],
         ];
 
