@@ -82,7 +82,7 @@ class Battle
         return $this->loser;
     }
 
-    public function setLoser(?User $Loser): self
+    public function setLoser(?User $loser): self
     {
         $this->loser = $loser;
 

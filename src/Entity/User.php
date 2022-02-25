@@ -59,6 +59,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: StockAsset::class)]
     private $stockAssets;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $picture;
+
     public function __construct()
     {
         $this->stockTransactions = new ArrayCollection();
@@ -394,6 +397,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $stockAsset->setOwner(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }
