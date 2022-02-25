@@ -33,6 +33,7 @@ Class BattleService implements BattleServiceInterface
                 ->setAttacker($attacker)
                 ->setDefender($this->userRepository->findOneById($request->request->get('defender')))
                 ->setStock($this->stockRepository->findOneById($request->request->get('stock')))
+                ->setStockVariationDirectionPrediction($request->request->get('direction_prediction'))
                 ->setState('pending')
             ;
 

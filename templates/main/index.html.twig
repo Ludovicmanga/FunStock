@@ -52,15 +52,23 @@
                     </div>
                 </div>
                 <div class="last_battles_box">
-                    <div>{{ user.numberOfWinnedBattles }} wins</div>
-                    <i class="fa-solid fa-trophy"></i>
-                    <div>{{ user.numberOfLostBattles }} losses</div>
-                    <i class="fa-solid fa-skull-crossbones"></i>
+                    <div class="battle_stats_box" id="winned_battles_box">
+                        <div>{{ user.numberOfWinnedBattles }} wins</div>
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    
+                    <div class="battle_stats_box" id="lost_battles_box">
+                        <div>{{ user.numberOfLostBattles }} losses</div>
+                        <i class="fa-solid fa-skull-crossbones"></i>
+                    </div>
+                    
                 </div>
-                <a class="battle_btn" href="#battle_modal" id="{{ user.id }}_battle_btn">
-                    <div class="not-clickable">Fight {{ user.firstName }}</div>
-                    <i class="fa-solid fa-bomb not-clickable"></i>
-                </a>
+                <div class="battle_btn_container">
+                    <a class="battle_btn" href="#battle_modal" id="{{ user.id }}_battle_btn">
+                    <div class="fight_text not-clickable">Fight</div>
+                        <i class="fa-solid fa-circle-radiation not-clickable"></i>
+                    </a>
+                </div>  
             </div>
             {% endfor %}
         </div>
@@ -125,10 +133,11 @@
                     </div>
                     <div id="buy_stock_container">
                         <a class="buy_or_sell_stocks_form_choose_stock_btn" href="#choose_stock_modal" id="{{ app.user.id }}_form_choose_stock_btn">
-                            <div class="not-clickable">Apple (AAPL)</div>
+                            <div class="not-clickable chosen_stock_container" id="buy_or_sell_stocks_form_chosen_stock_container">
+                                <div class="stock_name_and_symbol">Apple (AAPL)</div>
+                                <i class="fa-solid fa-angle-right"></i>
+                            </div>
                         </a>
-                        <div id="buy_stock_contextual_text">Buy</div>
-                        {{ form_row(buy_or_sell_stocks_form.stock, {'label': false, 'id': 'stock_input'}) }}
                     </div>
                     <div id="submit_btn_container">
                         <button id="submit_btn" type="submit">Confirm</button>

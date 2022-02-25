@@ -151,6 +151,10 @@ const addStockToForm = function(e, modalStopClass) {
     form = document.getElementById(formId);
     stockInput = document.createElement('input')
     stockInput.setAttribute('value', stockId);
+    stockName = document.getElementById(stockId+'_stock_name').innerHTML;
+    stockSymbol = document.getElementById(stockId+'_stock_symbol').innerHTML;
+    stockNameAndSymbolDiv = document.querySelector('#'+formId+'_chosen_stock_container .stock_name_and_symbol');
+    stockNameAndSymbolDiv.innerHTML = stockName+' ('+stockSymbol+')'
     document.querySelectorAll('.stock_input').forEach(input => { input.remove() }) ;
     stockInput.setAttribute('class', 'stock_input');
     stockInput.setAttribute('name', 'stock');

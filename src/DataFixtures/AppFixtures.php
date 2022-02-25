@@ -106,7 +106,7 @@ class AppFixtures extends Fixture
             ],
             [
                 'name' => 'TSMC',
-                'symbol'=> 'ETH',
+                'symbol'=> 'TWD',
                 'current_price' => 604,
                 'logo' => 'uploads/tsmc_logo.png',
                 'type' => 'company',
