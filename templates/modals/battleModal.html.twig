@@ -2,35 +2,51 @@
     <div class="modal_wrapper battle_modal_stop" aria-hidden="true" roles="dialog" aria-labelled-by="modal_title">
         {{ form_start(battle_form, {'attr' : {'id' : 'battle_form'}}) }}
             <div class="form" id="battleModal_step1">
-                <p>On which stock do you want to bet ?</p>
+                <h2>On which stock do you want to bet ?</h2>
                 <a class="battle_form_choose_stock_btn" href="#choose_stock_modal" id="{{ app.user.id }}_choose_stock_btn">
-                    <div class="not-clickable">Choose Stock</div>
+                    <div class="not-clickable chosen_stock_container">
+                        <div class="stock_name">Apple (AAPL)</div>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </div>
                 </a>
-                <div class="btn_box">
+                <div id="step_btn_box_1" class="step_btn_box">
                     <i type="button" id="battleModal_next1" class="fa-solid fa-circle-arrow-right battleModal_next_button"></i>
                 </div>
             </div>
             <div class="form" id="battleModal_step2">
-                <p>What is your predicition ?</p>
-                {{ form_label(battle_form.stockVariationDirectionPrediction, 'Prediction') }}
-                {{ form_row(battle_form.stockVariationDirectionPrediction) }}
-
-                <div class="btn_box">
+                <h2>What is your predicition ?</h2>
+                <div id="step_2_btns_wrapper">
+                    <a href="#" id="up" class="prediction_btn_container">
+                        <div class="title not-clickable">The stock value will increase</div>
+                        <div class="prediction_icon_container not-clickable">
+                            <i class="fa-solid fa-hand-point-up prediction_icon not-clickable"></i>
+                        </div>
+                    </a>
+                    <a href="#" id="down" class="prediction_btn_container">
+                        <div class="title not-clickable">The stock value will decrease</div>
+                        <div class="prediction_icon_container not-clickable">
+                            <i class="fa-solid fa-hand-point-down prediction_icon not-clickable"></i>
+                        </div>
+                    </a>
+                </div>
+                
+                <div id="step_btn_box_2" class="step_btn_box">
                     <i type="button" id="battleModal_back1" class="fa-solid fa-circle-arrow-left battleModal_back_button"></i>
                     <i type="button" id="battleModal_next2" class="fa-solid fa-circle-arrow-right battleModal_next_button"></i>
                 </div>
             </div>
             <div class="form" id="battleModal_step3">
-                <p>How much do you want to bet ?</p>
+                <h2>How much do you want to bet ?</h2>
                 <div id="amount_and_currency">
                     {{ form_row(battle_form.amount, {'label': false, 'id': 'battle_amount_input', 'attr' : {'placeholder' : 'Ex: 50'}}) }} 
                     <div id="currency_symbol">€</div>
                 </div>
-                <div class="btn_box">
+                <div id="step_btn_box_3" class="step_btn_box">
                     <i type="button" id="battleModal_back2" class="fa-solid fa-circle-arrow-left battleModal_back_button"></i>
+                    <button class="submit_btn" type="submit">Submit</button>
                 </div>
             </div>
-        <button type="submit">Submit</button>
+        
         {{ form_end(battle_form) }}
     </div>
 </div>

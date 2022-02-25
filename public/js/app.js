@@ -70,10 +70,13 @@ const closeBattleModal = function (e, modalStopClass) {
         document.getElementById('battleModal_step1').style.left = "40px";
         document.getElementById('battleModal_step2').style.left = "450px";
         document.getElementById('battleModal_step3').style.left = "450px";
+        document.querySelectorAll('.prediction_btn_container').forEach(a => {
+            a.removeAttribute('style');
+        })
     }, 510);
     document.getElementById("battle_form").querySelectorAll('input[name="defender"]').forEach(input => {
         input.remove()
-    })
+    });
 }
 
 const openViewBattleRequestsModal = function (e, modalStopClass) {
@@ -142,7 +145,7 @@ const declineBattleRequest = function(e) {
 
 const addStockToForm = function(e, modalStopClass) {
     e.preventDefault();
-    e.target.style="background:red;";
+    e.target.style="background:linear-gradient(0deg, rgba(255, 0, 150, 0.5), rgba(255, 0, 150, 0.5));;";
     stockId = e.target.id.match(/^\d+/g)[0];
     formId = document.getElementById('choose_stock_modal').getAttribute('form_id');
     form = document.getElementById(formId);
@@ -157,6 +160,24 @@ const addStockToForm = function(e, modalStopClass) {
         closeChooseStockModal(e, modalStopClass);
         e.target.removeAttribute('style');
     }, 200);
+}
+
+const addPredictionToForm = function(e) {
+    e.preventDefault();
+    document.querySelectorAll('.prediction_btn_container').forEach(a => {
+        a.removeAttribute('style');
+    });
+    e.target.style = 'background:linear-gradient(0deg, rgba(255, 0, 150, 0.3), rgba(255, 0, 150, 0.3));';
+    document.querySelectorAll('.stock_valuation_direction_prediction_input').forEach(a => {
+        a.remove()
+    });
+    predictionInput = document.createElement('input');
+    predictionInput.setAttribute('class', 'stock_valuation_direction_prediction_input');
+    predictionInput.setAttribute('type', 'hidden');
+    predictionInput.setAttribute('name', 'direction_prediction');
+    predictionInput.setAttribute('value', e.target.id);
+    battleForm = document.getElementById('battle_form');
+    battleForm.append(predictionInput);
 }
 
 // Modal buttons
@@ -196,6 +217,10 @@ document.querySelectorAll('.progress-done').forEach( progressBar => {
 
 document.querySelectorAll('.stock_card').forEach(a => {
     a.addEventListener('click', function(e){ addStockToForm(e, '.choose_stock_modal_stop') });
+})
+
+document.querySelectorAll('.prediction_btn_container').forEach(a => {
+    a.addEventListener('click', function(e){ addPredictionToForm(e) });
 })
 
 // Chart config
