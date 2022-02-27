@@ -41,7 +41,7 @@
             <div id="battle_friends_box_wrapper">
                 <div class="profile_box_container">
                     <div class="profile_picture_container">
-                        <img src="{{ asset(user.picture) }}">
+                        <img src="user.picture">
                     </div>
                     <h3>{{ user.firstName }}</h3>
                 </div>
@@ -81,7 +81,7 @@
                     <div class="battle_request_box_wrapper" id="{{ pending_inbound_battle_request.id }}_battle_request_box_wrapper">
                         <div class="profile_box_container">
                             <div class="profile_picture_container">
-                                <img src="{{ asset(pending_inbound_battle_request.attacker.picture) }}">
+                                <img src="pending_inbound_battle_request.attacker.picture">
                             </div>
                             <h3>{{ pending_inbound_battle_request.attacker.firstName }}</h3>
                         </div>
