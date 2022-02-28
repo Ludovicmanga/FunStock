@@ -159,7 +159,7 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
                     <div class=\"profile_picture_container\">
                         <img src=\"";
             // line 44
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(twig_get_attribute($this->env, $this->source, $context["user"], "picture", [], "any", false, false, false, 44)), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "picture", [], "any", false, false, false, 44), "html", null, true);
             echo "\">
                     </div>
                     <h3>";
@@ -233,9 +233,9 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
                 echo "_battle_request_box_wrapper\">
                         <div class=\"profile_box_container\">
                             <div class=\"profile_picture_container\">
-                                <img src=\"";
+                                <img src=\" ";
                 // line 84
-                echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["pending_inbound_battle_request"], "attacker", [], "any", false, false, false, 84), "picture", [], "any", false, false, false, 84)), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["pending_inbound_battle_request"], "attacker", [], "any", false, false, false, 84), "picture", [], "any", false, false, false, 84), "html", null, true);
                 echo "\">
                             </div>
                             <h3>";
@@ -305,22 +305,26 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
                     <div id=\"submit_btn_container\">
                         <button id=\"submit_btn\" type=\"submit\">Confirm</button>
                     </div>
-                ";
+                    <input type=\"hidden\" value=\"";
         // line 126
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["buy_or_sell_stocks_form"]) || array_key_exists("buy_or_sell_stocks_form", $context) ? $context["buy_or_sell_stocks_form"] : (function () { throw new RuntimeError('Variable "buy_or_sell_stocks_form" does not exist.', 126, $this->source); })()), 'form_end');
+        echo twig_escape_filter($this->env, (isset($context["apple_id"]) || array_key_exists("apple_id", $context) ? $context["apple_id"] : (function () { throw new RuntimeError('Variable "apple_id" does not exist.', 126, $this->source); })()), "html", null, true);
+        echo "\" class=\"stock_input\" name=\"stock\">
+                ";
+        // line 127
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["buy_or_sell_stocks_form"]) || array_key_exists("buy_or_sell_stocks_form", $context) ? $context["buy_or_sell_stocks_form"] : (function () { throw new RuntimeError('Variable "buy_or_sell_stocks_form" does not exist.', 127, $this->source); })()), 'form_end');
         echo "
             </div>
         </div>
     </div>
     ";
-        // line 130
-        $this->loadTemplate("modals/battleModal.html.twig", "main/index.html.twig", 130)->display($context);
         // line 131
-        echo "    ";
-        $this->loadTemplate("modals/viewBattleRequestsModal.html.twig", "main/index.html.twig", 131)->display($context);
+        $this->loadTemplate("modals/battleModal.html.twig", "main/index.html.twig", 131)->display($context);
         // line 132
         echo "    ";
-        $this->loadTemplate("modals/chooseStockModal.html.twig", "main/index.html.twig", 132)->display($context);
+        $this->loadTemplate("modals/viewBattleRequestsModal.html.twig", "main/index.html.twig", 132)->display($context);
+        // line 133
+        echo "    ";
+        $this->loadTemplate("modals/chooseStockModal.html.twig", "main/index.html.twig", 133)->display($context);
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -341,7 +345,7 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
 
     public function getDebugInfo()
     {
-        return array (  322 => 132,  319 => 131,  317 => 130,  310 => 126,  297 => 116,  288 => 110,  280 => 104,  276 => 102,  273 => 101,  261 => 95,  254 => 91,  248 => 88,  243 => 86,  238 => 84,  231 => 81,  226 => 80,  224 => 79,  215 => 72,  202 => 65,  194 => 60,  187 => 56,  175 => 51,  167 => 46,  162 => 44,  157 => 41,  153 => 40,  133 => 22,  123 => 18,  119 => 17,  114 => 15,  110 => 14,  105 => 12,  101 => 11,  98 => 10,  94 => 9,  91 => 8,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  326 => 133,  323 => 132,  321 => 131,  314 => 127,  310 => 126,  297 => 116,  288 => 110,  280 => 104,  276 => 102,  273 => 101,  261 => 95,  254 => 91,  248 => 88,  243 => 86,  238 => 84,  231 => 81,  226 => 80,  224 => 79,  215 => 72,  202 => 65,  194 => 60,  187 => 56,  175 => 51,  167 => 46,  162 => 44,  157 => 41,  153 => 40,  133 => 22,  123 => 18,  119 => 17,  114 => 15,  110 => 14,  105 => 12,  101 => 11,  98 => 10,  94 => 9,  91 => 8,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -389,7 +393,7 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
             <div id=\"battle_friends_box_wrapper\">
                 <div class=\"profile_box_container\">
                     <div class=\"profile_picture_container\">
-                        <img src=\"{{ asset(user.picture) }}\">
+                        <img src=\"{{ user.picture }}\">
                     </div>
                     <h3>{{ user.firstName }}</h3>
                 </div>
@@ -429,7 +433,7 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
                     <div class=\"battle_request_box_wrapper\" id=\"{{ pending_inbound_battle_request.id }}_battle_request_box_wrapper\">
                         <div class=\"profile_box_container\">
                             <div class=\"profile_picture_container\">
-                                <img src=\"{{ asset(pending_inbound_battle_request.attacker.picture) }}\">
+                                <img src=\" {{ pending_inbound_battle_request.attacker.picture }}\">
                             </div>
                             <h3>{{ pending_inbound_battle_request.attacker.firstName }}</h3>
                         </div>
@@ -471,6 +475,7 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
                     <div id=\"submit_btn_container\">
                         <button id=\"submit_btn\" type=\"submit\">Confirm</button>
                     </div>
+                    <input type=\"hidden\" value=\"{{ apple_id }}\" class=\"stock_input\" name=\"stock\">
                 {{ form_end(buy_or_sell_stocks_form) }}
             </div>
         </div>

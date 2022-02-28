@@ -84,7 +84,10 @@ class MainController extends AbstractController
         $pendingOutboundBattleRequests = $this->battleRepository->findPendingOutboundBattleRequestsByAttacker($this->getUser());
         $allBattles = $this->battleService->findAll();
 
+        $appleId = $this->stockRepository->findOneByCompanyName('Apple')->getId();
+
         return $this->render('main/index.html.twig', [
+            'apple_id' => $appleId,
             'battle_form' => $battleForm->createView(),
             'buy_or_sell_stocks_form' => $buyOrSellStocksForm->createView(),
             'controller_name' => 'MainController',
