@@ -53,7 +53,7 @@ class __TwigTemplate_804c3e55b3843ed3cecf42a947702e52 extends Template
         $this->displayBlock('head', $context, $blocks);
         // line 5
         echo "        <meta charset=\"UTF-8\">
-        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+        <meta name=\"viewport\" content=\"width=800\" />
         <title>";
         // line 7
         $this->displayBlock('title', $context, $blocks);
@@ -233,7 +233,7 @@ class __TwigTemplate_804c3e55b3843ed3cecf42a947702e52 extends Template
     <head>
         {% block head %}{% endblock %}
         <meta charset=\"UTF-8\">
-        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+        <meta name=\"viewport\" content=\"width=800\" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
