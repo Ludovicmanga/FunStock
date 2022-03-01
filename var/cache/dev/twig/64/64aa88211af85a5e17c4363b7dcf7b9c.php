@@ -162,12 +162,12 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "picture", [], "any", false, false, false, 44), "html", null, true);
             echo "\">
                     </div>
-                    <h3>";
+                    <h3 class=\"profile_first_name\">";
             // line 46
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "firstName", [], "any", false, false, false, 46), "html", null, true);
             echo "</h3>
                 </div>
-                <div class=\"stock_valuation_box_container\">
+                <div class=\"victory_rate_box_container\">
                     <h3>Victory rate</h3>
                     <div class=\"progress_bar\">
                         <div class=\"progress-done\" data-done=";
@@ -180,19 +180,19 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
             echo "></div>
                     </div>
                 </div>
-                <div class=\"last_battles_box\">
+                <div class=\"battle_stats_box_container\">
                     <div class=\"battle_stats_box\" id=\"winned_battles_box\">
                         <div>";
             // line 56
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "numberOfWinnedBattles", [], "any", false, false, false, 56), "html", null, true);
-            echo " wins</div>
+            echo "<span class=\"context_word\"> wins</span></div>
                         <i class=\"fa-solid fa-trophy\"></i>
                     </div>
                     <div class=\"battle_stats_box\" id=\"lost_battles_box\">
                         <div>";
             // line 60
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "numberOfLostBattles", [], "any", false, false, false, 60), "html", null, true);
-            echo " defeats</div>
+            echo "<span class=\"context_word\"> defeats</span></div>
                         <i class=\"fa-solid fa-skull-crossbones\"></i>
                     </div>
                 </div>
@@ -215,7 +215,7 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
         echo "        </div>
     </div>
     <div class=\"main_boxes_row\">
-        <div class=\"main_box\">
+        <div class=\"main_box\" id=\"battle_requests_box\">
             <div class=\"main_box_title_container\">
                 <h1 class=\"main_box_title\">My battle requests</h1>
             </div>
@@ -238,7 +238,7 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["pending_inbound_battle_request"], "attacker", [], "any", false, false, false, 84), "picture", [], "any", false, false, false, 84), "html", null, true);
                 echo "\">
                             </div>
-                            <h3>";
+                            <h3 class=\"profile_first_name\">";
                 // line 86
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, $context["pending_inbound_battle_request"], "attacker", [], "any", false, false, false, 86), "firstName", [], "any", false, false, false, 86), "html", null, true);
                 echo "</h3>
@@ -278,7 +278,7 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
         }
         // line 104
         echo "        </div>
-        <div class=\"main_box\">
+        <div class=\"main_box\" id=\"buy_sell_stock_box\">
             <div class=\"main_box_title_container\">
                 <h1 class=\"main_box_title\">Buy stocks</h1>
             </div>
@@ -395,21 +395,21 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
                     <div class=\"profile_picture_container\">
                         <img src=\"{{ user.picture }}\">
                     </div>
-                    <h3>{{ user.firstName }}</h3>
+                    <h3 class=\"profile_first_name\">{{ user.firstName }}</h3>
                 </div>
-                <div class=\"stock_valuation_box_container\">
+                <div class=\"victory_rate_box_container\">
                     <h3>Victory rate</h3>
                     <div class=\"progress_bar\">
                         <div class=\"progress-done\" data-done={% if (user.numberOfLostBattles + user.numberOfWinnedBattles) != 0 %}{{ user.numberOfWinnedBattles / (user.numberOfLostBattles + user.numberOfWinnedBattles)*100 }}{% else %}\"100\"{% endif %}></div>
                     </div>
                 </div>
-                <div class=\"last_battles_box\">
+                <div class=\"battle_stats_box_container\">
                     <div class=\"battle_stats_box\" id=\"winned_battles_box\">
-                        <div>{{ user.numberOfWinnedBattles }} wins</div>
+                        <div>{{ user.numberOfWinnedBattles }}<span class=\"context_word\"> wins</span></div>
                         <i class=\"fa-solid fa-trophy\"></i>
                     </div>
                     <div class=\"battle_stats_box\" id=\"lost_battles_box\">
-                        <div>{{ user.numberOfLostBattles }} defeats</div>
+                        <div>{{ user.numberOfLostBattles }}<span class=\"context_word\"> defeats</span></div>
                         <i class=\"fa-solid fa-skull-crossbones\"></i>
                     </div>
                 </div>
@@ -424,7 +424,7 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
         </div>
     </div>
     <div class=\"main_boxes_row\">
-        <div class=\"main_box\">
+        <div class=\"main_box\" id=\"battle_requests_box\">
             <div class=\"main_box_title_container\">
                 <h1 class=\"main_box_title\">My battle requests</h1>
             </div>
@@ -435,7 +435,7 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
                             <div class=\"profile_picture_container\">
                                 <img src=\" {{ pending_inbound_battle_request.attacker.picture }}\">
                             </div>
-                            <h3>{{ pending_inbound_battle_request.attacker.firstName }}</h3>
+                            <h3 class=\"profile_first_name\">{{ pending_inbound_battle_request.attacker.firstName }}</h3>
                         </div>
                         <a href=\"#view_battle_request_modal\" class=\"view_battle_request_btn battle_request_btn\" id=\"{{ pending_inbound_battle_request.id }}_view_battle_request_btn\">
                             <div class=\"not-clickable\">View the challenge</div>
@@ -454,7 +454,7 @@ class __TwigTemplate_bcba1596980ce300f0466f506d581f3f extends Template
             <div>You don't have battle requests. Don't wait for their move, <a href=\"#battle_friends_box_wrapper\">attack your friends !</a> </div>
             {% endif %}
         </div>
-        <div class=\"main_box\">
+        <div class=\"main_box\" id=\"buy_sell_stock_box\">
             <div class=\"main_box_title_container\">
                 <h1 class=\"main_box_title\">Buy stocks</h1>
             </div>

@@ -40,11 +40,13 @@ class __TwigTemplate_0f90d5d4933a1d89d61c2a6f617699fe extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "navbar.html.twig"));
 
         // line 1
-        echo "<nav class=\"main_nav_bar\">
+        echo "<nav class=\"main_nav_bar\">    
+    <a href=\"#buy_sell_stock_box\">Buy stocks</a>
+    <a href=\"#battle_requests_box\">Battle requests</a>
     ";
-        // line 2
-        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 2, $this->source); })()), "user", [], "any", false, false, false, 2)) {
-            // line 3
+        // line 4
+        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 4, $this->source); })()), "user", [], "any", false, false, false, 4)) {
+            // line 5
             echo "        <a href=\"";
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
             echo "\">
@@ -52,7 +54,7 @@ class __TwigTemplate_0f90d5d4933a1d89d61c2a6f617699fe extends Template
         </a>
     ";
         } else {
-            // line 7
+            // line 9
             echo "        <a href=\"";
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
             echo "\">
@@ -60,11 +62,8 @@ class __TwigTemplate_0f90d5d4933a1d89d61c2a6f617699fe extends Template
         </a>
     ";
         }
-        // line 11
-        echo "    
-    <a href=\"#\">My stocks</a>
-    <a href=\"#\">Battles</a>
-</nav>";
+        // line 13
+        echo "</nav>";
         
         $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
 
@@ -85,12 +84,14 @@ class __TwigTemplate_0f90d5d4933a1d89d61c2a6f617699fe extends Template
 
     public function getDebugInfo()
     {
-        return array (  64 => 11,  56 => 7,  48 => 3,  46 => 2,  43 => 1,);
+        return array (  66 => 13,  58 => 9,  50 => 5,  48 => 4,  43 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("<nav class=\"main_nav_bar\">
+        return new Source("<nav class=\"main_nav_bar\">    
+    <a href=\"#buy_sell_stock_box\">Buy stocks</a>
+    <a href=\"#battle_requests_box\">Battle requests</a>
     {% if app.user %}
         <a href=\"{{ path('app_logout') }}\">
             <li>Logout</li>
@@ -100,9 +101,6 @@ class __TwigTemplate_0f90d5d4933a1d89d61c2a6f617699fe extends Template
             <li>Login</li>
         </a>
     {% endif %}
-    
-    <a href=\"#\">My stocks</a>
-    <a href=\"#\">Battles</a>
 </nav>", "navbar.html.twig", "C:\\xampp\\htdocs\\FunStock\\templates\\navbar.html.twig");
     }
 }

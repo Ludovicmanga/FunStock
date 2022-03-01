@@ -1,4 +1,6 @@
-<nav class="main_nav_bar">
+<nav class="main_nav_bar">    
+    <a href="#buy_sell_stock_box">Buy stocks</a>
+    <a href="#battle_requests_box">Battle requests</a>
     {% if app.user %}
         <a href="{{ path('app_logout') }}">
             <li>Logout</li>
@@ -8,7 +10,4 @@
             <li>Login</li>
         </a>
     {% endif %}
-    
-    <a href="#">My stocks</a>
-    <a href="#">Battles</a>
 </nav>

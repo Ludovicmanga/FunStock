@@ -96,7 +96,10 @@ class __TwigTemplate_b509a48930b9013348eafdaf178f52cc extends Template
                     <button class=\"submit_btn\" type=\"submit\">Submit</button>
                 </div>
             </div>
-        
+        <input type=\"hidden\" value=\"";
+        // line 48
+        echo twig_escape_filter($this->env, (isset($context["apple_id"]) || array_key_exists("apple_id", $context) ? $context["apple_id"] : (function () { throw new RuntimeError('Variable "apple_id" does not exist.', 48, $this->source); })()), "html", null, true);
+        echo "\" class=\"stock_input\" name=\"stock\">
         ";
         // line 49
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["battle_form"]) || array_key_exists("battle_form", $context) ? $context["battle_form"] : (function () { throw new RuntimeError('Variable "battle_form" does not exist.', 49, $this->source); })()), 'form_end');
@@ -123,7 +126,7 @@ class __TwigTemplate_b509a48930b9013348eafdaf178f52cc extends Template
 
     public function getDebugInfo()
     {
-        return array (  102 => 49,  91 => 41,  53 => 6,  47 => 3,  43 => 1,);
+        return array (  105 => 49,  101 => 48,  91 => 41,  53 => 6,  47 => 3,  43 => 1,);
     }
 
     public function getSourceContext()
@@ -175,7 +178,7 @@ class __TwigTemplate_b509a48930b9013348eafdaf178f52cc extends Template
                     <button class=\"submit_btn\" type=\"submit\">Submit</button>
                 </div>
             </div>
-        
+        <input type=\"hidden\" value=\"{{ apple_id }}\" class=\"stock_input\" name=\"stock\">
         {{ form_end(battle_form) }}
     </div>
 </div>", "modals/battleModal.html.twig", "C:\\xampp\\htdocs\\FunStock\\templates\\modals\\battleModal.html.twig");
