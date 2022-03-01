@@ -717,6 +717,14 @@ a {
         margin: 0px 10px 0px 10px;
     }
 
+    .battle_btn .fight_text {
+        font-size: 30px;
+    }
+    
+    .battle_btn i {
+        font-size: 30px;
+    }
+
     /* battle request wrapper */
 
     #battle_requests_box {
@@ -836,6 +844,14 @@ a {
 
     #buy_or_sell_stocks_form #submit_btn {
         font-size: 25px;
+    }
+
+    /* View the challenge modal */
+
+    #view_battle_request_modal .modal_wrapper {
+        height: 600px;
+        font-size: 38px;
+        padding-top: 80px;
     }
 
 }
