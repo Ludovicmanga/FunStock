@@ -331,6 +331,7 @@ a {
     padding: 10px;
     border-radius: 15px;
     background: black;
+    text-align: center;
 }
 
 .view_battle_request_btn:hover {
