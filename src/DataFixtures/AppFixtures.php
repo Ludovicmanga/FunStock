@@ -2,8 +2,10 @@
 
 namespace App\DataFixtures;
 
+use DateTime;
 use App\Entity\User;
 use App\Entity\Stock;
+use App\Entity\Battle;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -19,36 +21,164 @@ class AppFixtures extends Fixture
     
     public function load(ObjectManager $manager): void
     {
-        $usersArray = [
-            [
-                'FirstName' => 'John',
-                'LastName' => 'John',
-                'Email'=> 'John@gmail.com',
-                'Picture' => 'https://funstock.s3.eu-west-3.amazonaws.com/john.jpg'
-            ],
-            [
-                'FirstName' => 'Paul',
-                'LastName' => 'Newton',
-                'Email'=> 'paul@gmail.com',
-                'Picture' => 'https://funstock.s3.eu-west-3.amazonaws.com/paul.jpg'
-            ],
-            [
-                'FirstName' => 'Georges',
-                'LastName' => 'Smith',
-                'Email'=> 'Georges@gmail.com',
-                'Picture' => 'https://funstock.s3.eu-west-3.amazonaws.com/georges.jpg'
-            ],
-        ];
 
-        foreach($usersArray as $userArray){
-            $user = new User;
-            foreach($userArray as $key => $value) {
-                $setter = 'set'.$key;
-                $user->$setter($value);
-            }
-            $user->setPassword($this->passwordHasher->hashPassword($user, 'password'));
-            $manager->persist($user);
-        }
+        // users
+
+        $georges = new User();
+        $georges->setFirstName('Georges')
+                ->setLastName('Smith')
+                ->setEmail('georges@gmail.com')
+                ->setPicture('https://funstock.s3.eu-west-3.amazonaws.com/georges.jpg')
+                ->setPassword($this->passwordHasher->hashPassword($georges, 'password'))
+        ;
+        $manager->persist($georges);
+
+        $paul = new User();
+        $paul->setFirstName('Paul')
+                ->setLastName('Smith')
+                ->setEmail('paul@gmail.com')
+                ->setPicture('https://funstock.s3.eu-west-3.amazonaws.com/paul.jpg')
+                ->setPassword($this->passwordHasher->hashPassword($paul, 'password'))
+        ;
+        $manager->persist($paul);
+
+        $john = new User();
+        $john->setFirstName('John')
+                ->setLastName('Doe')
+                ->setEmail('john@gmail.com')
+                ->setPicture('https://funstock.s3.eu-west-3.amazonaws.com/john.jpg')
+                ->setPassword($this->passwordHasher->hashPassword($john, 'password'))
+        ;
+        $manager->persist($john);
+
+        // battles
+
+        $stock1 = new Stock;
+        $stock1->setCompanyName('Airbus')
+               ->setSymbol('AIR')
+               ->setCurrentPrice(107.22)
+               ->setLogo('https://funstock.s3.eu-west-3.amazonaws.com/airbus_logo.png')
+               ->setType('company')
+               ->setLast30DaysEvolution('+7')
+        ;
+        $manager->persist($stock1);
+
+        $battle1 = new Battle;
+        $battle1->setAttacker($georges)
+                ->setDefender($john)
+                ->setWinner($georges)
+                ->setLoser($john)
+                ->setStock($stock1)
+                ->setState('accepted')
+                ->setBattleDate(new datetime)
+                ->setAmount(1000)
+                ->setStockVariationDirectionPrediction('up')
+        ;
+        $manager->persist($battle1);
+
+        $battle2 = new Battle;
+        $battle2->setAttacker($georges)
+                ->setDefender($john)
+                ->setWinner($georges)
+                ->setLoser($john)
+                ->setStock($stock1)
+                ->setState('accepted')
+                ->setBattleDate(new datetime)
+                ->setAmount(1000)
+                ->setStockVariationDirectionPrediction('up')
+        ;
+        $manager->persist($battle2);
+
+        $battle3 = new Battle;
+        $battle3->setAttacker($georges)
+                ->setDefender($john)
+                ->setWinner($georges)
+                ->setLoser($john)
+                ->setStock($stock1)
+                ->setState('accepted')
+                ->setBattleDate(new datetime)
+                ->setAmount(1000)
+                ->setStockVariationDirectionPrediction('up')
+        ;
+        $manager->persist($battle3);
+
+        $battle4 = new Battle;
+        $battle4->setAttacker($georges)
+                ->setDefender($john)
+                ->setWinner($georges)
+                ->setLoser($john)
+                ->setStock($stock1)
+                ->setState('accepted')
+                ->setBattleDate(new datetime)
+                ->setAmount(1000)
+                ->setStockVariationDirectionPrediction('up')
+        ;
+        $manager->persist($battle4);
+
+        $battle5 = new Battle;
+        $battle5->setAttacker($georges)
+                ->setDefender($john)
+                ->setWinner($john)
+                ->setLoser($georges)
+                ->setStock($stock1)
+                ->setState('accepted')
+                ->setBattleDate(new datetime)
+                ->setAmount(1000)
+                ->setStockVariationDirectionPrediction('up')
+        ;
+        $manager->persist($battle5);
+
+        $battle6 = new Battle;
+        $battle6->setAttacker($georges)
+                ->setDefender($paul)
+                ->setWinner($paul)
+                ->setLoser($georges)
+                ->setStock($stock1)
+                ->setState('accepted')
+                ->setBattleDate(new datetime)
+                ->setAmount(1000)
+                ->setStockVariationDirectionPrediction('up')
+        ;
+        $manager->persist($battle6);
+
+        $battle7= new Battle;
+        $battle7->setAttacker($john)
+                ->setDefender($paul)
+                ->setWinner($paul)
+                ->setLoser($john)
+                ->setStock($stock1)
+                ->setState('accepted')
+                ->setBattleDate(new datetime)
+                ->setAmount(1000)
+                ->setStockVariationDirectionPrediction('up')
+        ;
+        $manager->persist($battle7);
+
+        $battle8 = new Battle;
+        $battle8->setAttacker($georges)
+                ->setDefender($paul)
+                ->setWinner($georges)
+                ->setLoser($paul)
+                ->setStock($stock1)
+                ->setState('accepted')
+                ->setBattleDate(new datetime)
+                ->setAmount(1000)
+                ->setStockVariationDirectionPrediction('up')
+        ;
+        $manager->persist($battle8);
+
+        $battle9 = new Battle;
+        $battle9->setAttacker($john)
+                ->setDefender($paul)
+                ->setWinner($john)
+                ->setLoser($paul)
+                ->setStock($stock1)
+                ->setState('accepted')
+                ->setBattleDate(new datetime)
+                ->setAmount(1000)
+                ->setStockVariationDirectionPrediction('up')
+        ;
+        $manager->persist($battle9);
 
         $stockArrayList = [
             [
@@ -90,14 +220,6 @@ class AppFixtures extends Fixture
                 'logo' => 'https://funstock.s3.eu-west-3.amazonaws.com/microsoft_logo.png',
                 'type' => 'company',
                 'last 30 days evolution' => '-3'
-            ],
-            [
-                'name' => 'Airbus',
-                'symbol'=> 'AIR',
-                'current_price' => 107.22,
-                'logo' => 'https://funstock.s3.eu-west-3.amazonaws.com/airbus_logo.png',
-                'type' => 'company',
-                'last 30 days evolution' => '+7'
             ],
             [
                 'name' => 'Palantir',
