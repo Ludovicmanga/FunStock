@@ -29,6 +29,44 @@ body {
     background-color: #e280fc;
 }
 
+/* login page */
+
+#login_form_container {
+    display: flex;
+    justify-content: center;
+}
+
+#login_form {
+    margin-top: 60px;
+    background: #dddfed;
+    border-radius: 10px;
+    width: 35%;
+    padding: 30px;
+    height: 400px;   
+}
+
+#login_form_title {
+    text-align: center;
+}
+
+#login_form input {
+    border-radius: 10px;
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+    padding-left: 15px;
+}
+
+#login_form button {
+    border-radius: 10px;
+    margin-top: 20px;
+    height: 40px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .main_nav_bar {
     display: flex;
     justify-content: flex-end;
@@ -130,8 +168,6 @@ a {
 
 .profile_box_container {
     margin-right: 40px;
-    width: 50px;
-    height: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -140,8 +176,8 @@ a {
 .profile_picture_container {
     display: flex;
     justify-content: center;
-    width: 100%;
-    max-height: 100%;
+    width: 50px;
+    height: 50px;
 }
 
 .profile_picture_container img {
@@ -215,7 +251,7 @@ a {
     background: rgba(0, 0, 0, 0.73);
 }
 
-.last_battles_box {
+.battle_stats_box_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -648,3 +684,474 @@ a {
     padding: 25px;
     height: 117px;
 }
+
+/* Responsive website for tablets */
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+    /* login page */
+
+    #login_form {
+        height: 700px;
+        width: 60%;
+    }
+
+    #login_form input {
+        height: 80px;
+        font-size: 30px;
+    }
+
+    #login_form button {
+        font-size: 30px;
+        padding: 30px 30px 58px 30px;
+
+    }
+
+    .main_nav_bar {
+        font-size: 32px;
+    }
+
+    .main_boxes_row {
+        flex-direction: column;
+        align-items: center;
+        margin: 0px;
+    }
+
+    .main_box {
+        width: 92%;
+        font-size: 30px;
+    }
+
+    .main_box_title {
+        font-size: 44px;
+    }
+
+    #stats_buttons_container {
+        height: 65px;
+    }
+
+    .battle_stats_box_container {
+        font-size: 25px;
+        width: 200px;
+        margin: 0px 20px 0px 20px;
+    }
+
+    .battle_stats_box {
+        width: 100%;
+    }
+
+    .battle_stats_box .context_word {
+        display: none;
+    }
+
+    .stats_button {
+        display: flex;
+        align-items: center;
+        font-size: 29px;
+        width: 50%;
+        justify-content: center;
+    }
+
+    #battle_friends_box_wrapper {
+        padding: 35px 35px 0px 35px;
+    }
+
+    #battle_friends_box_wrapper .profile_box_container {
+        padding-top: 44px;
+        width: 10%;
+    }
+
+    .progress_bar {
+        width: 100%;
+    }
+
+    .victory_rate_box_container {
+        width: 34%;
+        margin: 0px 10px 0px 10px;
+    }
+
+    .battle_btn .fight_text {
+        font-size: 30px;
+    }
+    
+    .battle_btn i {
+        font-size: 30px;
+    }
+
+    /* battle request wrapper */
+
+    #battle_requests_box {
+        height: 400px;
+    }
+
+    .battle_request_box_wrapper {
+        height: 130px;
+        padding: 15px 0px 15px 15px;
+    }
+
+    .battle_request_box_wrapper .profile_box_container {
+        width: 15%;
+        margin: 0px;
+    }
+
+    .view_battle_request_btn {
+        width: 40%;
+    }
+
+    .profile_first_name {
+        margin-top: 14px;
+    }
+
+    /* fight modal */
+
+    #battle_modal h2 {
+        font-size: 25px;
+    }
+
+    #battle_modal .modal_wrapper {
+        height: 550px;
+    }
+
+    .chosen_stock_container {
+        height: 90px;
+        font-size: 25px;
+        padding: 24px;
+    }
+
+    .prediction_btn_container {
+        font-size: 25px;
+        margin: 0px 5px 0px 5px;
+        height: 335px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .prediction_btn_container .title{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .prediction_icon_container {
+        margin-bottom: 16px;
+    }
+
+    #battle_form .submit_btn {
+        font-size: 25px;
+    }
+
+    #battle_form #step_btn_box_1 {
+        margin-top: 215px;
+    }
+
+    #battle_form #step_btn_box_2 {
+        margin-top: -13px;
+    }
+
+    #battle_form #step_btn_box_3 {
+        margin-top: 131px;
+    }
+
+    #battle_form #battle_amount_input {
+        margin-top: 100px;
+    }
+
+    /* choose_stock_modal */
+
+    #choose_stock_modal .modal_wrapper {
+        height: 800px;
+    }
+
+    #choose_stock_modal .stock_card {
+        height: 360px;
+        width: 66%;
+    }
+
+    #choose_stock_modal .stock_name {
+        font-size: 37px;
+    }
+
+    #choose_stock_modal .stock_symbol {
+        font-size: 29px;
+    }
+
+    #choose_stock_modal .identity_container {
+        margin-bottom: 22px;
+    }
+
+    #choose_stock_modal .stock_img_container {
+        height: 162px;
+    }
+
+    #choose_stock_modal .stock_information_container {
+        justify-content: space-evenly;
+    }
+
+    #choose_stock_modal .stock_price,
+    #choose_stock_modal .stock_last_30_days_evolution {
+        font-size: 29px;
+    }
+
+    /* buy or sell stocks box */
+
+    #buy_or_sell_stocks_form #submit_btn {
+        font-size: 25px;
+    }
+
+    /* View the challenge modal */
+
+    #view_battle_request_modal .modal_wrapper {
+        height: 600px;
+        font-size: 38px;
+        padding-top: 80px;
+    }
+
+}
+
+/* Responsive website for smartphones */
+
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+    /* login page */
+
+    #login_form {
+        height: 900px;
+        width: 60%;
+    }
+
+    #login_form h1 {
+        font-size: 40px;
+    }
+
+    #login_form input {
+        height: 80px;
+        font-size: 30px;
+    }
+
+    #login_form button {
+        font-size: 30px;
+        padding: 50px;
+        display: flex;
+        align-items: center;
+
+    }
+
+    .main_boxes_row {
+        flex-direction: column;
+    }
+
+    .main_nav_bar {
+        font-size: 32px;
+    }
+
+    .main_boxes_row {
+        flex-direction: column;
+        align-items: center;
+        margin: 0px;
+    }
+
+    .main_box {
+        width: 92%;
+        font-size: 30px;
+    }
+
+    .main_box_title {
+        font-size: 50px;
+    }
+
+    /* stats box */
+
+    .stats_button {
+        display: flex;
+        align-items: center;
+        font-size: 41px;
+        width: 50%;
+        justify-content: center;
+    }
+
+    /* battle box */
+
+    .profile_picture_container {
+        height: 80px;
+        width: 80px;
+    }
+
+    .progress_bar {
+        width: 100%;
+    }
+
+    #battle_friends_box_wrapper .profile_box_container {
+        padding-top: 44px;
+        width: 14%;
+    }
+
+    .profile_first_name {
+        margin-top: 14px;
+    }
+
+    .battle_stats_box_container {
+        margin: 0px 20px 0px 20px;
+    }
+
+    .battle_stats_box {
+        width: 100%;
+        font-size: 38px;
+    }
+
+    .battle_stats_box .context_word {
+        display: none;
+    }
+
+    .victory_rate_box_container {
+        width: 34%;
+        margin: 0px 20px 0px 20px;
+        padding-top: 28px;
+    }
+
+    .victory_rate_box_container h3 {
+        text-align: center;
+    }
+
+    .battle_btn {
+        height: 100px;
+    }
+
+    .battle_btn .fight_text {
+        font-size: 30px;
+    }
+    
+    .battle_btn i {
+        font-size: 30px;
+    }
+    
+    /* battle modal */
+
+    #battle_modal .modal_wrapper {
+        height: 1000px;
+    }
+
+    #battle_modal h2 {
+        font-size: 44px;
+    }
+
+    #battle_modal .chosen_stock_container {
+        margin-top: 124px;
+    }
+
+    .chosen_stock_container {
+        height: 211px;
+        font-size: 35px;
+        padding: 24px;
+    }
+
+    #step_2_btns_wrapper {
+        flex-direction: column;
+    }
+
+    .prediction_btn_container {
+        font-size: 40px;
+        margin: 5px 5px 5px 5px;
+        height: 335px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    #battle_form #battle_amount_input {
+        margin-top: 170px;
+        height: 215px;
+        text-align: center;
+        font-size: 40px;
+    }
+
+    #battle_form .submit_btn {
+        font-size: 32px;
+    }
+
+    #battle_form #step_btn_box_1 {
+        margin-top: 309px;
+    }
+
+    #battle_form #step_btn_box_3 {
+        margin-top: 229px;
+    }
+
+    /* choose stock modal */
+
+    #choose_stock_modal .modal_wrapper {
+        height: 1100px;
+    }
+
+    #choose_stock_modal .stock_card {
+        height: 460px;
+        width: 75%;
+    }
+
+    #choose_stock_modal .stock_name {
+        font-size: 50px;
+    }
+
+    #choose_stock_modal .stock_symbol {
+        font-size: 40px;
+    }
+
+    #choose_stock_modal .identity_container {
+        margin-bottom: 22px;
+    }
+
+    #choose_stock_modal .stock_img_container {
+        height: 230px;
+    }
+
+    #choose_stock_modal .stock_information_container {
+        justify-content: space-evenly;
+    }
+
+    #choose_stock_modal .stock_price,
+    #choose_stock_modal .stock_last_30_days_evolution {
+        font-size: 40px;
+    }
+
+    /* battle_requests_box */
+
+    #battle_requests_box {
+        height: 400px;
+    }
+
+    .battle_request_box_wrapper {
+        height: 162px;
+        padding: 10px 0px 10px 10px;
+    }
+
+    .view_battle_request_btn {
+        text-align: center;
+    }
+
+    /* Buy or sell stocks */
+
+    #buy_or_sell_stocks_form #stock_amount_input {
+        font-size: 110px;
+    }
+
+    #buy_or_sell_stocks_form #submit_btn {
+        font-size: 40px;
+    }
+
+    /* View the challenge modal */
+
+    #view_battle_request_modal .modal_wrapper {
+        height: 600px;
+        font-size: 40px;
+        padding-top: 80px;
+    }
+}
+
+

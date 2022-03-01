@@ -149,7 +149,7 @@ const addStockToForm = function(e, modalStopClass) {
     stockId = e.target.id.match(/^\d+/g)[0];
     formId = document.getElementById('choose_stock_modal').getAttribute('form_id');
     form = document.getElementById(formId);
-    stockInput = document.createElement('input')
+    stockInput = document.createElement('input');
     stockInput.setAttribute('value', stockId);
     stockName = document.getElementById(stockId+'_stock_name').innerHTML;
     stockSymbol = document.getElementById(stockId+'_stock_symbol').innerHTML;

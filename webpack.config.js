@@ -32,8 +32,6 @@ Encore
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
 
-    .enableReactPreset()
-
     /*
      * FEATURE CONFIG
      *
@@ -47,22 +45,6 @@ Encore
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
 
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = 3;
-    })
-    .configureBabel(function(babelConfig) {
-        // presets
-        babelConfig.presets.push('@babel/preset-flow');
-        babelConfig.presets.push('@babel/preset-typescript');
-        babelConfig.presets.push('@babel/preset-react');
-
-        // plugins
-        babelConfig.plugins.push('@babel/plugin-proposal-class-properties');
-    })
-
-    // enables Sass/SCSS support
-    .enableSassLoader()
     // ...
 
     // enables Sass/SCSS support
@@ -72,7 +54,6 @@ Encore
     //.enableTypeScriptLoader()
 
     // uncomment if you use React
-    //.enableReactPreset()
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
