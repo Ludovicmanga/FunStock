@@ -305,6 +305,10 @@ a {
 
 /* Battle requests box */
 
+#battle_requests_box {
+    overflow-y: scroll;
+}
+
 .battle_request_box_wrapper {
     display: flex;
     height: 80px;
@@ -776,6 +780,11 @@ a {
     .victory_rate_box_container {
         width: 34%;
         margin: 0px 10px 0px 10px;
+    }
+
+    .victory_rate_box_container h3 {
+        margin-top: 19px;
+        margin-bottom: 9px;
     }
 
     .battle_btn .fight_text {
