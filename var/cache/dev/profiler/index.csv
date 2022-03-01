@@ -2514,3 +2514,13 @@ d17837,::1,GET,http://localhost/FunStock/public/,1646151376,,200
 386c00,::1,GET,http://localhost/FunStock/public/,1646151462,,200
 7eb96d,::1,GET,http://localhost/FunStock/public/logout,1646151468,,302
 2852a8,::1,GET,http://localhost/FunStock/public/login,1646151469,,200
+afa8fd,::1,POST,http://localhost/FunStock/public/login,1646153142,,302
+b2b555,::1,GET,http://localhost/FunStock/public/login,1646153142,,200
+502683,::1,POST,http://localhost/FunStock/public/login,1646153148,,302
+ace500,::1,GET,http://localhost/FunStock/public/,1646153151,,200
+f6cee1,::1,POST,http://localhost/FunStock/public/,1646153196,,302
+1a507a,::1,GET,http://localhost/FunStock/public/,1646153198,,200
+1a4f86,::1,GET,http://localhost/FunStock/public/logout,1646153203,,302
+439eea,::1,GET,http://localhost/FunStock/public/login,1646153203,,200
+0e65b3,::1,POST,http://localhost/FunStock/public/login,1646153218,,302
+fd3fe2,::1,GET,http://localhost/FunStock/public/,1646153220,,200
