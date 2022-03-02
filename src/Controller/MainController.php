@@ -40,7 +40,7 @@ class MainController extends AbstractController
         $this->userService = $userService;
     }
 
-    #[Route('/', name: 'home')]
+    #[Route('/home', name: 'home')]
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
         $allStocks = $this->stockRepository->findAll();
